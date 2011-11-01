@@ -1,15 +1,12 @@
-<!--
-	This is likely going to be the only page that a user views when coming to the site because it will be where the game is displayed and we aren't doing anything with backend languages (like a leader board) at this time meaning that there isn't much interesting which isn't on this page.
--->
+<!DOCTYPE HTML>
 
-<!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			Garbage Collector
-		</title>
-	</head>
-	<body>
-		Welcome to Garbage Collector. We are currently trying to figure out which way is up, so if you could check back later that would be grand. We may have sobered up by then...
-	</body>
+<head>
+	<title>gc</title>
+	<script type="text/javascript" src="../closure/closure/goog/base.js"></script>
+	<script type="text/javascript" src="gc.js"></script>
+</head>
+
+<body onload="gc.start()"></body>
+
 </html>
