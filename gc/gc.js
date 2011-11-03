@@ -2,6 +2,11 @@
 goog.provide('gc');
 
 
+
+goog.addDependency("../../../gc/highscores.js", ['gc.Highscores'], ['lime.Scene', 'lime.RoundedRect', 'gc.hsTracker', 'lime.Layer', 'lime.Label']);
+goog.addDependency("../../../gc/hsTracker.js", ['gc.hsTracker'], []);
+
+
 //get requirements
 goog.require('lime.Director');
 goog.require('lime.Scene');
@@ -15,6 +20,7 @@ goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
 goog.require('gc.Button');
 goog.require('gc.Game');
+goog.require('gc.Highscores');
 goog.require('lime.audio.Audio');
 goog.require('lime.Sprite');
 
@@ -65,6 +71,7 @@ gc.loadMenu = function(){
 	goog.events.listen(highBtn, 'click', function() {
 		btnSound.stop();
 		btnSound.play();
+		gc.showHighscores();
 	});
 	layer.appendChild(highBtn);
 	
@@ -79,13 +86,23 @@ gc.isBrokenChrome = function(){
 }
 
 gc.makeMenuBtn = function(txt){
-	var btn = new gc.Button(txt).setSize(150,45);
+	var btn = new gc.Button(txt).setSize(150,45).setFontColor('#fff');
 	return btn;
+}
+
+gc.prevScene = function(){
+	gc.director.popScene();
+}
+
+gc.showHighscores = function(){
+	var scene = new gc.Highscores();
+	gc.director.pushScene(scene);
 }
 
 gc.newGame = function(){
 	var game = new gc.Game();
 	gc.director.replaceScene(game, lime.transitions.Dissolve);
+	game.start();
 }
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('gc.start', gc.start);

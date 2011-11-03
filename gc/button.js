@@ -11,17 +11,28 @@ goog.require('lime.GlossyButton');
  */
 gc.Button = function(txt) {
     lime.GlossyButton.call(this, txt);
-
+		this.fontColor = '#f00';
     this.borderWidth = 4;
     this.setColor('#000');
 };
 goog.inherits(gc.Button, lime.GlossyButton);
 
+gc.Button.prototype.setFontColor = function(col){
+		this.fontColor = col;
+		this.upstate.label.setFontColor(this.fontColor);
+		this.downstate.label.setFontColor(this.fontColor);
+		this.makeState_();
+		return this;
+}
+gc.Button.prototype.getFontColor = function(){
+		return this.fontColor;
+}
+
 gc.Button.prototype.makeState_ = function() {
     var state = new lime.RoundedRect().setFill('#fff').setRadius(10);
     state.inner = new lime.RoundedRect().setRadius(10);
     state.label = new lime.Label().setAlign('center').
-        setFontFamily('"Trebuchet MS"').setFontColor('#eef').setFontSize(28);
+        setFontFamily('"Trebuchet MS"').setFontColor(this.fontColor).setFontSize(28);
 
     state.appendChild(state.inner);
     state.inner.appendChild(state.label);
