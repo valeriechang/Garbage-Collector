@@ -1,4 +1,4 @@
-goog.provide("gc.instructions");
+goog.provide('gc.Instructions');
 
 goog.require('lime.Label');
 goog.require('lime.RoundedRect');
@@ -6,7 +6,7 @@ goog.require('lime.Scene');
 goog.require('lime.Sprite');
 goog.require('rb.Button');
 
-gc.instructions = function() {
+gc.Instructions = function() {
 	lime.Scene.call(this);
 	
 	var btn = new rb.Button('Back').setPosition(360, 870).setSize(300, 90);
@@ -20,4 +20,4 @@ gc.instructions = function() {
     txt1.setText('Click somewhere on the screen to move there');
     contents.appendChild(txt1);
 };
-goog.inherits(gc.instructions, lime.Scene);
+goog.inherits(gc.Instructions, lime.Scene);

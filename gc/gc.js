@@ -23,6 +23,7 @@ goog.require('gc.Game');
 goog.require('gc.Highscores');
 goog.require('lime.audio.Audio');
 goog.require('lime.Sprite');
+goog.require('gc.Instructions');
 
 gc.WIDTH = 500;
 gc.HEIGHT = 320;
@@ -63,6 +64,7 @@ gc.loadMenu = function(){
 	goog.events.listen(instrBtn, 'click', function() {
 		btnSound.stop();
 		btnSound.play();
+		gc.showInstructions();
 	});
 	layer.appendChild(instrBtn);
 
@@ -96,6 +98,11 @@ gc.prevScene = function(){
 
 gc.showHighscores = function(){
 	var scene = new gc.Highscores();
+	gc.director.pushScene(scene);
+}
+
+gc.showInstructions = function(){
+	var scene = new gc.Instructions();
 	gc.director.pushScene(scene);
 }
 
