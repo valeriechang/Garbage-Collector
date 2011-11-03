@@ -17,7 +17,7 @@ gc.Instructions = function() {
 
 	
 	var backBtn = gc.makeMenuBtn("Back");
-	backBtn.setPosition(gc.WIDTH / 2, 70 + 2 * 30);
+	backBtn.setPosition(gc.WIDTH / 2, 275);
 	goog.events.listen(backBtn, 'click', function() {
 		gc.prevScene();
 	});
@@ -27,7 +27,7 @@ gc.Instructions = function() {
 	var text = new lime.Label("Instructions").setAlign("center").setFontSize("30").setPosition(gc.WIDTH / 2, 20).setFontColor('#fff');
 	backLayer.appendChild(text);
 	
-	var text2 = new lime.Label().setFontSize(18).setSize(280, 100).setPosition(gc.WIDTH / 2, 20).setAlign('center');
+	var text2 = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 100).setAlign('center').setFontColor('#fff');
 	text2.setText("click to move and attack!");
 	backLayer.appendChild(text2);
 };
