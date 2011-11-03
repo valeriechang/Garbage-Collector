@@ -27,8 +27,24 @@ gc.Instructions = function() {
 	var text = new lime.Label("Instructions").setAlign("center").setFontSize("30").setPosition(gc.WIDTH / 2, 20).setFontColor('#fff');
 	backLayer.appendChild(text);
 	
-	var text2 = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 100).setAlign('center').setFontColor('#fff');
-	text2.setText("click to move and attack!");
+	var objective = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 75).setAlign('center').setFontColor('#fff');
+	objective.setText("Your CPU is being attacked by zombie children!");
+	backLayer.appendChild(objective);
+	
+	var objective2 = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 100).setAlign('center').setFontColor('#fff');
+	objective2.setText("Defeat them before it crashes!");
+	backLayer.appendChild(objective2);
+	
+	var text2 = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 150).setAlign('center').setFontColor('#fff');
+	text2.setText("Click to move, you'll attack all enemies in your path");
 	backLayer.appendChild(text2);
+	
+	var clock = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 200).setAlign('center').setFontColor('#fff');
+	clock.setText("If you're pressed on all sides, you can overclock!");
+	backLayer.appendChild(clock);
+	
+	var clock2 = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 225).setAlign('center').setFontColor('#fff');
+	clock2.setText("Be warned, it can make your CPU overheat!");
+	backLayer.appendChild(clock2);
 };
 goog.inherits(gc.Instructions, lime.Scene);
