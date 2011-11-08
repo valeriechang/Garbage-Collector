@@ -14,6 +14,7 @@ goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
 goog.require('gc.Button');
+goog.require('gc.Game');
 goog.require('lime.audio.Audio');
 goog.require('lime.Sprite');
 
@@ -46,6 +47,8 @@ gc.loadMenu = function(){
 	goog.events.listen(startBtn, 'click', function() {
 		btnSound.stop();
 		btnSound.play();
+		
+		gc.newGame();
 	});
 	layer.appendChild(startBtn);
 	
@@ -78,6 +81,11 @@ gc.isBrokenChrome = function(){
 gc.makeMenuBtn = function(txt){
 	var btn = new gc.Button(txt).setSize(150,45);
 	return btn;
+}
+
+gc.newGame = function(){
+	var game = new gc.Game();
+	gc.director.replaceScene(game, lime.transitions.Dissolve);
 }
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('gc.start', gc.start);
