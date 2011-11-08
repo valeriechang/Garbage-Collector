@@ -79,7 +79,7 @@ gc.isBrokenChrome = function(){
 }
 
 gc.makeMenuBtn = function(txt){
-	var btn = new gc.Button(txt).setSize(150,45);
+	var btn = new gc.Button(txt).setSize(150,45).setFontColor('#fff');
 	return btn;
 }
 
