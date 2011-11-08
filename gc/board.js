@@ -1,13 +1,13 @@
 goog.provide('gc.Board');
 
-goog.require('lime.RoundedRect');
+goog.require('lime.Sprite');
 
 gc.Board = function(game){
 	lime.RoundedRect.call(this);
 	
 	this.game = game;
 	
-	this.setFill('#050');
+	this.setFill('assets/circuitBoard.png');
 	
 }
-goog.inherits(gc.Board, lime.RoundedRect);
+goog.inherits(gc.Board, lime.Sprite);
