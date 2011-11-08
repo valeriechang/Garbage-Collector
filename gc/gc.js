@@ -18,7 +18,7 @@ goog.require('gc.Game');
 goog.require('lime.audio.Audio');
 goog.require('lime.Sprite');
 
-gc.WIDTH = 460;
+gc.WIDTH = 500;
 gc.HEIGHT = 320;
 
 // entrypoint
