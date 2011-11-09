@@ -15,6 +15,7 @@ goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
 goog.require('gc.Button');
 goog.require('gc.Game');
+goog.require('gc.Highscores');
 goog.require('lime.audio.Audio');
 goog.require('lime.Sprite');
 
@@ -65,6 +66,7 @@ gc.loadMenu = function(){
 	goog.events.listen(highBtn, 'click', function() {
 		btnSound.stop();
 		btnSound.play();
+		gc.showHighscores();
 	});
 	layer.appendChild(highBtn);
 	
@@ -81,6 +83,11 @@ gc.isBrokenChrome = function(){
 gc.makeMenuBtn = function(txt){
 	var btn = new gc.Button(txt).setSize(150,45).setFontColor('#fff');
 	return btn;
+}
+
+gc.showHighscores = function(){
+	var scene = new gc.Highscores();
+	gc.director.replaceScene(scene, lime.transitions.Dissolve);
 }
 
 gc.newGame = function(){
