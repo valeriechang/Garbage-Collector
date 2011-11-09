@@ -11,8 +11,8 @@ gc.hsTracker = function(){
 	}
 }
 
-gc.hsTracker.prototype.addStore = function(name, points){
-		this.data[] = {'name': name, 'points': points};
+gc.hsTracker.prototype.add = function(name, points){
+		this.data.push({'name': name, 'points': points});
 		this.sort();
 		this.save();
 }
@@ -37,7 +37,7 @@ gc.hsTracker.prototype.next = function(){
 
 gc.hsTracker.prototype.sort = function(){
 	var sorter = function(a, b){
-		return a.points - b.points;
+		return -a.points + b.points;
 	};
 	this.data.sort(sorter);
 }

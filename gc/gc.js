@@ -2,6 +2,11 @@
 goog.provide('gc');
 
 
+
+goog.addDependency("../../../gc/highscores.js", ['gc.Highscores'], ['lime.Scene', 'lime.RoundedRect', 'gc.hsTracker', 'gc.Board', 'lime.Layer', 'lime.Label']);
+goog.addDependency("../../../gc/hsTracker.js", ['gc.hsTracker'], []);
+
+
 //get requirements
 goog.require('lime.Director');
 goog.require('lime.Scene');
@@ -85,9 +90,13 @@ gc.makeMenuBtn = function(txt){
 	return btn;
 }
 
+gc.prevScene = function(){
+	gc.director.popScene();
+}
+
 gc.showHighscores = function(){
 	var scene = new gc.Highscores();
-	gc.director.replaceScene(scene, lime.transitions.Dissolve);
+	gc.director.pushScene(scene);
 }
 
 gc.newGame = function(){
