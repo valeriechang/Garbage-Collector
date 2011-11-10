@@ -3,7 +3,7 @@ goog.provide("gc.Highscores");
 goog.require("lime.Scene");
 goog.require("lime.RoundedRect");
 goog.require("gc.hsTracker");
-goog.require("gc.Board");
+//goog.require("gc.Board");
 
 gc.Highscores = function(){
 	lime.Scene.call(this);
@@ -14,7 +14,7 @@ gc.Highscores = function(){
 	var backLayer = new lime.Layer();
 	this.appendChild(backLayer);
 
-	var board = new gc.Board(this).setSize(gc.WIDTH, gc.HEIGHT).setPosition(gc.WIDTH / 2, gc.HEIGHT / 2);
+	var board = new lime.RoundedRect().setFill(0, 100, 0).setSize(gc.WIDTH, gc.HEIGHT).setPosition(gc.WIDTH / 2, gc.HEIGHT / 2);
 	backLayer.appendChild(board);
 
 	var hsText = new lime.Label("Highscores").setAlign("center").setFontSize("30").setPosition(gc.WIDTH / 2, 20).setFontColor('#fff');
