@@ -2,9 +2,14 @@
 // Please do not edit.
 goog.addDependency('../../../gc/board.js', ['gc.Board'], ['lime.Sprite']);
 goog.addDependency('../../../gc/button.js', ['gc.Button'], ['lime.GlossyButton']);
+goog.addDependency('../../../gc/cpu.js', ['gc.Cpu'], ['lime.RoundedRect']);
+goog.addDependency('../../../gc/enemy.js', ['gc.Enemy'], ['lime.Sprite']);
 goog.addDependency('../../../gc/game.js', ['gc.Game'], ['gc.Board', 'gc.SideBar', 'lime.Scene']);
-goog.addDependency('../../../gc/gc.js', ['gc'], ['gc.Button', 'gc.Game', 'lime.Circle', 'lime.Director', 'lime.GlossyButton', 'lime.Label', 'lime.Layer', 'lime.Scene', 'lime.Sprite', 'lime.animation.FadeTo', 'lime.animation.MoveTo', 'lime.animation.ScaleTo', 'lime.animation.Spawn', 'lime.audio.Audio']);
-goog.addDependency('../../../gc/sidebar.js', ['gc.SideBar'], ['lime.RoundedRect']);
+goog.addDependency('../../../gc/gc.js', ['gc'], ['gc.Button', 'gc.Game', 'gc.Highscores', 'lime.Circle', 'lime.Director', 'lime.GlossyButton', 'lime.Label', 'lime.Layer', 'lime.Scene', 'lime.Sprite', 'lime.animation.FadeTo', 'lime.animation.MoveTo', 'lime.animation.ScaleTo', 'lime.animation.Spawn', 'lime.audio.Audio']);
+goog.addDependency('../../../gc/highscores.js', ['gc.Highscores'], ['gc.hsTracker', 'lime.RoundedRect', 'lime.Scene']);
+goog.addDependency('../../../gc/hsTracker.js', ['gc.hsTracker'], []);
+goog.addDependency('../../../gc/player.js', ['gc.Player'], ['lime.Sprite']);
+goog.addDependency('../../../gc/sidebar.js', ['gc.SideBar'], ['lime.Sprite']);
 goog.addDependency('../../../lime/css/lime.css.soy.js', ['lime.css'], ['soy', 'soy.StringBuilder']);
 goog.addDependency('../../../lime/demos/pong/game.js', ['pong.Game'], ['lime.Circle', 'lime.Label', 'lime.RoundedRect', 'lime.Sprite', 'lime.animation.FadeTo', 'lime.audio.Audio', 'lime.fill.LinearGradient', 'pong.Notice', 'pong.Player']);
 goog.addDependency('../../../lime/demos/pong/notice.js', ['pong.Notice'], ['lime.RoundedRect']);

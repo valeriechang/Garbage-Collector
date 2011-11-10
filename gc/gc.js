@@ -102,6 +102,7 @@ gc.showHighscores = function(){
 gc.newGame = function(){
 	var game = new gc.Game();
 	gc.director.replaceScene(game, lime.transitions.Dissolve);
+	game.start();
 }
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
 goog.exportSymbol('gc.start', gc.start);
