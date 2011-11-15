@@ -6,6 +6,7 @@ goog.require('gc.SideBar');
 goog.require('gc.Cpu');
 goog.require('gc.Player');
 goog.require('gc.Enemy');
+goog.require('gc.EnemyFactory');
 
 gc.Game = function(){
 	lime.Scene.call(this);
@@ -20,17 +21,25 @@ gc.Game = function(){
 	this.board = new gc.Board(gc.WIDTH - this.SIDEBAR_WIDTH, gc.HEIGHT, this).setPosition(gc.WIDTH/2.0 + this.SIDEBAR_WIDTH/2 , gc.HEIGHT/2.0);
 	backLayer.appendChild(this.board);
 	
+	// CPU 
+	this.cpu = new gc.Cpu().setSize(40,40).setPosition(0,0);
+	this.board.appendChild(this.cpu);
+	
 	// Side bar
 	this.sidebar = new gc.SideBar(this.SIDEBAR_WIDTH, gc.HEIGHT,this).setPosition(this.SIDEBAR_WIDTH/2.0, gc.HEIGHT/2.0);
 	backLayer.appendChild(this.sidebar);
 	
-	// Test junk
-	// this.test = new lime.RoundedRect().setSize(50,50).setPosition(0,0).setFill('#000');
-	// this.board.appendChild(this.test);
+	// Player
+	this.player = new gc.Player().setPosition(0, 50);
+	this.board.appendChild(this.player);
 	
-	// CPU 
-	this.cpu = new gc.Cpu().setSize(40,40).setPosition(0,0);
-	this.board.appendChild(this.cpu);
+	// Enemies
+	this.enemies = new Array();
+	
+	// Enemy Factory
+	this.enemyFactory = new gc.EnemyFactory();
+	
+	
 
 }
 goog.inherits(gc.Game, lime.Scene);
@@ -38,15 +47,31 @@ goog.inherits(gc.Game, lime.Scene);
 
 gc.Game.prototype.start = function(){
 	lime.scheduleManager.schedule(this.step_, this);
-	// this.v = new goog.math.Vec2(Math.random() * .5, -.8).normalize();
 }
 
 gc.Game.prototype.step_ = function(dt){
-	// this.SPEED = .1;
-// 	
-	// var pos = this.test.getPosition();
-    // pos.x += this.v.x * dt * this.SPEED;
-    // pos.y += this.v.y * dt * this.SPEED;
-    // this.test.setPosition(pos);
-//     
+	this.cpu.update();
+	this.sidebar.updateSidebar();
+	
+	if(cpu.getStatus() >= 100){
+		endGame();
+	}     
+	
+	this.player.timeStep();
+	this.enemyFactory.timeStep();
+	
+	for(i=0; i<this.enemies.size(); ++i){
+		enemies[i].timeStep();
+	}
 }
+
+gc.Game.prototype.endGame = function(){
+	
+}
+
+gc.Game.prototype.createEnemy = function(x,y,enemy){
+	this.enemies.push(enemy);
+	enemy.setPosition(x,y);
+	this.board.appendChild(enemy);
+}
+
