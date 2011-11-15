@@ -29,6 +29,7 @@ gc.Enemy = function(cpu){
 	this.angle = angle; // angle in degrees
 	
 	
+	this.setFill(255, 0, 0); // enemy is red... currently
 }
 goog.inherits(gc.Enemy, lime.Sprite);
 
