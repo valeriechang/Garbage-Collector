@@ -16,6 +16,9 @@ gc.Game = function(){
 	var backLayer = new lime.Layer();
 	this.appendChild(backLayer);
 	
+	var playerLayer = new lime.Layer();
+	this.appendChild(playerLayer);
+	
 	// Main board
 	this.board = new gc.Board(gc.WIDTH - this.SIDEBAR_WIDTH, gc.HEIGHT, this).setPosition(gc.WIDTH/2.0 + this.SIDEBAR_WIDTH/2 , gc.HEIGHT/2.0);
 	backLayer.appendChild(this.board);
@@ -32,6 +35,9 @@ gc.Game = function(){
 	this.cpu = new gc.Cpu().setSize(40,40).setPosition(0,0);
 	this.board.appendChild(this.cpu);
 
+	// Player
+	this.player = new gc.Player(this);
+	this.board.appendChild(this.player);
 }
 goog.inherits(gc.Game, lime.Scene);
 
