@@ -29,7 +29,7 @@ gc.Game = function(){
 	this.board.appendChild(this.cpu);
 	
 	// Side bar
-	this.sidebar = new gc.SideBar(this.SIDEBAR_WIDTH, gc.HEIGHT,this).setPosition(this.SIDEBAR_WIDTH/2.0, gc.HEIGHT/2.0);
+	this.sidebar = new gc.SideBar(this.SIDEBAR_WIDTH, gc.HEIGHT,this).setPosition(this.SIDEBAR_WIDTH/2.0, gc.HEIGHT/2.0, this.cpu);
 	backLayer.appendChild(this.sidebar);
 	
 	// Player
@@ -56,19 +56,19 @@ gc.Game.prototype.start = function(){
 }
 
 gc.Game.prototype.step_ = function(dt){
-	this.cpu.update();
-	this.sidebar.updateSidebar();
+	// this.cpu.update();
+	// this.sidebar.updateSidebar();
+// 	
+	// if(cpu.getStatus() >= 100){
+		// endGame();
+	// }     
+// 	
+	// this.player.timeStep();
+	// this.enemyFactory.timeStep();
 	
-	if(cpu.getStatus() >= 100){
-		endGame();
-	}     
-	
-	this.player.timeStep();
-	this.enemyFactory.timeStep();
-	
-	for(i=0; i<this.enemies.size(); ++i){
-		enemies[i].timeStep();
-	}
+	// for(i=0; i<this.enemies.size(); ++i){
+		// enemies[i].timeStep();
+	// }
 }
 
 gc.Game.prototype.endGame = function(){
