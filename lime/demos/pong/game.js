@@ -26,7 +26,6 @@ pong.Game = function(mode) {
     var back = new lime.fill.LinearGradient().addColorStop(0, '#bbb').addColorStop(1, '#DDD');
     this.setFill(back);
 
-
     this.world = new lime.Sprite().setFill('#FFF').setSize(this.WIDTH, this.HEIGHT).setPosition(10, 50).
         setAnchorPoint(0, 0);
     this.appendChild(this.world);
