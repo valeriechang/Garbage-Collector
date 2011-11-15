@@ -12,9 +12,12 @@ gc.Player = function(game){
 }	
 goog.inherits(gc.Player, lime.Sprite);
 
-/*
-this.Player.prototype.enableSimulation() {
-	this.v = 0;
-	this.a = 0;
-}
-*/
+gc.Player.prototype.enableInteraction = function() {
+    var py = this.getPosition().y;
+    goog.events.listen(this, ['mousedown', 'touchstart'], function(e) {
+        var whalf = this.getSize().width / 2;
+        var width = this.getParent().getSize().width - whalf;
+        var py = this.getPosition().y;
+        e.startDrag(false, new goog.math.Box(py, width, py, whalf));
+    },false, this);
+};
