@@ -11,6 +11,5 @@ gc.Board = function(width, height, game){
 	
 	this.setFill('assets/circuitBoard.png');
 	this.setSize(this.width, this.height);
-	
 }
 goog.inherits(gc.Board, lime.Sprite);
