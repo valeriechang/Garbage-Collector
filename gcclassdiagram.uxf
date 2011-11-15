@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>280</x>
-      <y>20</y>
+      <x>330</x>
+      <y>40</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>520</x>
-      <y>70</y>
+      <x>570</x>
+      <y>90</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>210</x>
-      <y>150</y>
+      <x>260</x>
+      <y>170</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -37,8 +37,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>410</x>
-      <y>150</y>
+      <x>460</x>
+      <y>170</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -48,8 +48,8 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>350</x>
-      <y>0</y>
+      <x>400</x>
+      <y>20</y>
       <w>240</w>
       <h>90</h>
     </coordinates>
@@ -60,8 +60,8 @@ r2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>20</y>
+      <x>280</x>
+      <y>40</y>
       <w>120</w>
       <h>150</h>
     </coordinates>
@@ -72,8 +72,8 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>300</x>
-      <y>70</y>
+      <x>350</x>
+      <y>90</y>
       <w>180</w>
       <h>100</h>
     </coordinates>
@@ -83,63 +83,47 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>50</x>
-      <y>40</y>
+      <x>260</x>
+      <y>370</y>
       <w>100</w>
-      <h>30</h>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>Scene</panel_attributes>
+    <panel_attributes>Enemy
+--
+timeStep()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>350</x>
+      <y>270</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+timeStep()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
     <coordinates>
       <x>70</x>
-      <y>40</y>
-      <w>160</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>30;30;30;130;140;130</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>210</x>
-      <y>350</y>
+      <y>370</y>
       <w>100</w>
-      <h>30</h>
+      <h>50</h>
     </coordinates>
-    <panel_attributes>Enemy</panel_attributes>
+    <panel_attributes>CPU
+--
+getStatus():int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>380</x>
-      <y>350</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>Player</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>20</x>
-      <y>350</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>CPU</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>90</x>
-      <y>470</y>
+      <x>140</x>
+      <y>520</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -149,8 +133,8 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>210</x>
-      <y>470</y>
+      <x>260</x>
+      <y>520</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -160,8 +144,8 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>330</x>
-      <y>470</y>
+      <x>380</x>
+      <y>520</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -171,64 +155,66 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>370</x>
-      <y>250</y>
+      <x>70</x>
+      <y>260</y>
       <w>100</w>
-      <h>30</h>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>SideBar</panel_attributes>
+    <panel_attributes>SideBar
+--
+updateBar()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>270</x>
-      <y>150</y>
-      <w>180</w>
-      <h>120</h>
+      <x>100</x>
+      <y>170</y>
+      <w>190</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes>
-    <additional_attributes>30;30;30;70;160;70;160;100</additional_attributes>
+    <additional_attributes>170;30;170;70;30;70;30;90</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>350</y>
+      <x>280</x>
+      <y>380</y>
       <w>50</w>
-      <h>140</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;120</additional_attributes>
+    <additional_attributes>30;30;30;140</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>110</x>
-      <y>390</y>
+      <x>160</x>
+      <y>410</y>
       <w>170</w>
-      <h>100</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>150;30;30;30;30;80</additional_attributes>
+    <additional_attributes>150;30;30;30;30;110</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>390</y>
+      <x>280</x>
+      <y>410</y>
       <w>180</w>
-      <h>100</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;30;160;30;160;80</additional_attributes>
+    <additional_attributes>30;30;160;30;160;110</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>40</x>
-      <y>290</y>
+      <x>90</x>
+      <y>310</y>
       <w>240</w>
       <h>80</h>
     </coordinates>
@@ -238,31 +224,31 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>250</y>
+      <x>280</x>
+      <y>170</y>
       <w>50</w>
-      <h>120</h>
+      <h>220</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>30;30;30;100</additional_attributes>
+    <additional_attributes>30;30;30;200</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
+      <x>280</x>
       <y>290</y>
-      <w>220</w>
-      <h>80</h>
+      <w>140</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>m2=1</panel_attributes>
-    <additional_attributes>30;30;200;30;200;60</additional_attributes>
+    <additional_attributes>30;50;120;50;120;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>210</x>
-      <y>250</y>
+      <x>20</x>
+      <y>170</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -272,20 +258,20 @@ m2=*</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
+      <x>90</x>
       <y>150</y>
-      <w>50</w>
-      <h>120</h>
+      <w>190</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes>
-    <additional_attributes>30;30;30;100</additional_attributes>
+    <additional_attributes>170;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>90</x>
-      <y>570</y>
+      <x>140</x>
+      <y>590</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -295,12 +281,71 @@ m2=1</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>110</x>
-      <y>470</y>
+      <x>160</x>
+      <y>520</y>
+      <w>50</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;30;70</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>140</x>
+      <y>360</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30;30;120;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>50</x>
+      <y>270</y>
       <w>50</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;100</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30;100;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>500</x>
+      <y>360</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>EnemyFactory
+--
+timeStep()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>330</x>
+      <y>150</y>
+      <w>240</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>30;30;80;30;80;80;220;80;220;210</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>330</x>
+      <y>340</y>
+      <w>190</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+createEnemy()</panel_attributes>
+    <additional_attributes>30;50;170;50</additional_attributes>
   </element>
 </diagram>
