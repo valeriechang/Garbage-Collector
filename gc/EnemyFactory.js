@@ -1,6 +1,6 @@
 goog.provide('gc.EnemyFactory');
 
-gc.EnemyFactory = function(game){
+gc.EnemyFactory = function(game, cpu){
 	this.game = game;
 	this.zombieDensity = 1;
 	this.boardWidth = game.getBoardWidth();
