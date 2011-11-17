@@ -34,11 +34,11 @@ gc.SideBar = function (width, height, game, cpu) {
 	this.appendChild(healthBar);
 
 	//initial mask values
-	/*var mask = new lime.Sprite().setSize(width, 0).setAnchorPoint(0.5, 0.5).
+	this.mask = new lime.Sprite().setSize(width, 0).setAnchorPoint(0.5, 0.5).
 		setPosition(0, height * 0.32);
-	this.appendChild(mask);
+	this.appendChild(this.mask);
 
-	healthBar.setMask(mask);*/
+	healthBar.setMask(this.mask);
 
 	//initial soundButton values
 	var isSoundOnOff = false;
@@ -90,9 +90,9 @@ goog.inherits(gc.SideBar, lime.Sprite);
 // new method for bar visibility
 gc.SideBar.prototype.updateBar = function () {
 
-	var heightGrowth = this.cpu.getStatus();
+	var heightGrowth = (this.cpu.getStatus()*0.01)*this.height;
 
-	mask.setSize(width, heightGrowth);
+	this.mask.setSize(this.width, heightGrowth);
 };
 
 //add some interaction
