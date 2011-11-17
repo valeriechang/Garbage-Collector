@@ -12,7 +12,7 @@ gc.Game = function(){
 	lime.Scene.call(this);
 	
 	this.SIDEBAR_WIDTH = gc.WIDTH/5.0;
-	this.SPAWN_RATE = 1000; // ms/spawn
+	this.SPAWN_RATE = 2000; // ms/spawn
 	
 	// Background layer
 	var backLayer = new lime.Layer();
@@ -47,7 +47,7 @@ goog.inherits(gc.Game, lime.Scene);
 
 gc.Game.prototype.start = function(){
 	lime.scheduleManager.scheduleWithDelay(this.scheduleSpawn, this, this.SPAWN_RATE);
-	lime.scheduleManager.scheduleWithDelay(this.)
+	// lime.scheduleManager.scheduleWithDelay()
 	lime.scheduleManager.schedule(this.step_, this);
 }
 
@@ -64,6 +64,11 @@ gc.Game.prototype.step_ = function(dt){
 	
 	 for(i=0; i<this.enemies.length; ++i){
 		 this.enemies[i].timeStep();
+		 var pos = this.enemies[i].getPosition();
+		 if(Math.abs(pos.x) < 20 && Math.abs(pos.y < 20)){
+		 	this.board.removeChild(this.enemies[i]);
+		 	this.enemies.splice(i, 1);	
+		 }
 	 }
 }
 
