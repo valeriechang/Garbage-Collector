@@ -37,7 +37,7 @@ gc.Game = function(){
 	
 	// Player
 	this.player = new gc.Player().setPosition(0, 50);
-	this.board.appendChild(this.player);
+	this.backLayer.appendChild(this.player);
 	
 	// Enemies
 	this.enemies = new Array();
@@ -68,7 +68,7 @@ gc.Game.prototype.step_ = function(dt){
 		 this.enemies[i].timeStep();
 		 var pos = this.enemies[i].getPosition();
 		 if(Math.abs(pos.x) < 20 && Math.abs(pos.y < 20)){
-		 	this.board.removeChild(this.enemies[i]);
+		 	this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
 		 }
 	 }
@@ -89,7 +89,7 @@ gc.Game.prototype.endGame = function(){
 gc.Game.prototype.createEnemy = function(x,y,enemy){
 	this.enemies.push(enemy);
 	enemy.setPosition(x,y);
-	this.board.appendChild(enemy);
+	this.backLayer.appendChild(enemy);
 }
 
 gc.Game.prototype.getBoardWidth = function(){
