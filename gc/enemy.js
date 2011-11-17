@@ -7,6 +7,7 @@ gc.Enemy = function(cpu){
 	lime.Sprite.call(this);
 	
 	this.cpu = cpu;
+	/*
 	var x = Math.random() * gc.WIDTH;
 	var y = Math.random() * gc.HEIGHT;
 
@@ -24,9 +25,10 @@ gc.Enemy = function(cpu){
 	}
 	this.x = x;
 	this.y = y;
+*/
 
 	this.v = 1;
-	this.angle = angle; // angle in degrees
+	this.angle = 0; // angle in degrees
 	
 	
 	this.setFill(255, 0, 0); // enemy is red... currently
@@ -35,6 +37,7 @@ goog.inherits(gc.Enemy, lime.Sprite);
 
 gc.Enemy.prototype.setAngle = function(angle){
 	this.angle = angle;
+	return this;
 }
 
 gc.Enemy.prototype.angleTowards = function(obj){
@@ -46,15 +49,33 @@ gc.Enemy.prototype.angleTowards = function(obj){
 }
 
 gc.Enemy.prototype.move = function(){
-	this.x += Math.cos(this.angle * Math.PI / 180) * this.v;
-	this.y += Math.sin(this.angle * Math.PO / 180) * this.v;
+	var pos = this.getPosition();
+	this.x = pos.x;
+	this.y = pos.y;
+	var xmul = 1;
+	var ymul = 1;
+	if(this.x <= 0 && this.y >= 0){
+		ymul = -1;
+	}
+	else if(this.x <= 0 && this.y <= 0){
+		xmul = -1;
+	}
+	this.x += xmul * Math.cos(this.angle) * this.v;
+	this.y += ymul * Math.sin(this.angle) * this.v;
 	this.setPosition(this.x, this.y);
+	return this;
 }
 
 gc.Enemy.prototype.timeStep = function(){
 	// enemies move towards the CPU
-	var theta = this.angleTowards(cpu);
+	var theta = this.angleTowards(this.cpu);
 	var deg = theta * 180 / Math.PI;
 	this.setAngle(deg);
 	this.move();
+	return this;
 }
+//gc.Enemy.prototype.setPosition = function(x, y){
+	//this.x = x;
+	//this.y = y;
+	//return this;
+//}

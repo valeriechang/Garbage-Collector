@@ -13,29 +13,29 @@ gc.EnemyFactory.prototype.spawnZombies = function(){
 		
 		// Spawn somewhere on right side
 		if(this.spawnProb() > 0){
-			var rightEnemy = new lime.RoundedRect().setSize(20,20).setFill('#f00');
+			var rightEnemy = new gc.Enemy(this.game.cpu).setSize(20,20);
 			this.game.createEnemy(this.boardWidth/2, Math.floor(Math.random()*this.boardHeight - this.boardHeight/2),rightEnemy);
 		}
 		
 		// Spawn somewhere on left side
 		if(this.spawnProb() > 0){
-			var leftEnemy = new lime.RoundedRect().setSize(20,20).setFill('#f00');
+			var leftEnemy = new gc.Enemy(this.game.cpu).setSize(20,20);
 			this.game.createEnemy(-this.boardWidth/2, Math.floor(Math.random()*this.boardHeight - this.boardHeight/2),leftEnemy);
 		}
 		
 		// Spawn somewhere on bottom 
 		if(this.spawnProb() > 0){
-			var bottomEnemy = new lime.RoundedRect().setSize(20,20).setFill('#f00');
+			var bottomEnemy = new gc.Enemy(this.game.cpu).setSize(20,20);
 			this.game.createEnemy(Math.floor(Math.random()*this.boardWidth - this.boardWidth/2), this.boardHeight/2, bottomEnemy);
 		}
 		
 		// Spawn somewhere on top
 		if(this.spawnProb() > 0){
-			var bottomEnemy = new lime.RoundedRect().setSize(20,20).setFill('#f00');
+			var bottomEnemy = new gc.Enemy(this.game.cpu).setSize(20,20);
 			this.game.createEnemy(Math.floor(Math.random()*this.boardWidth - this.boardWidth/2), -this.boardHeight/2, bottomEnemy);
 		}
 		
-		this.zombieDensity += .1;
+		this.zombieDensity += .001;
 	}
 }
 

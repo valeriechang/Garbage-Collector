@@ -51,7 +51,7 @@ gc.Game.prototype.start = function(){
 }
 
 gc.Game.prototype.step_ = function(dt){
-	// this.cpu.update();
+	 //this.cpu.update();
 	// this.sidebar.updateSidebar();
 // 	
 	// if(cpu.getStatus() >= 100){
@@ -61,9 +61,9 @@ gc.Game.prototype.step_ = function(dt){
 	// this.player.timeStep();
 	
 	
-	// for(i=0; i<this.enemies.size(); ++i){
-		// enemies[i].timeStep();
-	// }
+	 for(i=0; i<this.enemies.length; ++i){
+		 this.enemies[i].timeStep();
+	 }
 }
 
 gc.Game.prototype.scheduleSpawn = function(){
