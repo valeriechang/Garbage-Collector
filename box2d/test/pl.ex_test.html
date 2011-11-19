@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>PL Tests - pl.ex</title>
+<script src="../../closure/closure/goog/base.js"></script>
+<script src="../examples/deps.js"></script>
+<script>
+  goog.require('goog.testing.asserts');
+  goog.require('goog.testing.jsunit');
+  goog.require('pl.ex');
+  goog.require('goog.graphics.AffineTransform');
+</script>
+</head>
+<body>
+<script>
+function testTransformCoordinates() {
+  var tx = new goog.graphics.AffineTransform();
+
+  for (var i = 0; i < 100; i++) {
+    var testSize = goog.math.uniformRandom(0, 20);
+    var pts = [];
+    for(var j=0;j<testSize;j++){
+      pts.push(new goog.math.Coordinate(rand(), rand()));
+    }
+
+    randomizeTransform(tx);
+
+    var array = pl.ex.flattenPoints(pts);
+
+    pl.ex.transformCoordinates(tx, pts);
+    tx.transform(array, 0, array, 0, pts.length);
+
+    for (var j = 0; j < pts.length; j++) {
+      assertEquals(pts[j].x, array[j * 2]);
+      assertEquals(pts[j].y, array[j * 2 + 1]);
+    }
+  }
+}
+
+
+
+function testTransformCoordinate() {
+  var tx = new goog.graphics.AffineTransform();
+  var pt = new goog.math.Coordinate();
+
+  for (var i = 0; i < 1000; i++) {
+
+    randomizePoint(pt);
+    randomizeTransform(tx);
+
+    var array = [pt.x, pt.y];
+
+    pl.ex.transformCoordinate(tx, pt);
+    tx.transform(array, 0, array, 0, 1);
+
+    assertEquals(pt.x, array[0]);
+    assertEquals(pt.y, array[1]);
+
+  }
+}
+
+function testSelectMany() {
+  var values = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]];
+
+  var iter = pl.ex.selectMany(values, function(a) { return a; });
+
+  var array = goog.iter.toArray(iter);
+  assertEquals(9, array.length);
+};
+
+
+function randomizePoint(pt) {
+  pt.x = rand();
+  pt.y = rand();
+}
+
+
+
+function randomizeTransform(tx) {
+  tx.setTransform(rand(), rand(), rand(), rand(), rand(), rand());
+}
+
+
+
+function rand() {
+  return goog.math.uniformRandom(-20, 20);
+}
+</script>
+</body>
+</html>
