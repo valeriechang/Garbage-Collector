@@ -5,7 +5,7 @@ goog.require('lime.RoundedRect');
 gc.Cpu = function(){
 	lime.RoundedRect.call(this);
 	
-	this.REC_AMT = 5;
+	this.REC_AMT = 1;
 	
 	this.setFill('assets/cpu.png');
 	this.status = 100;

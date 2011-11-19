@@ -12,7 +12,7 @@ gc.Game = function(){
 	lime.Scene.call(this);
 	
 	this.SIDEBAR_WIDTH = gc.WIDTH/5.0;
-	this.SPAWN_RATE = 2000; // ms/spawn
+	this.SPAWN_RATE = 2000; 
 	this.RECOVERY_RATE = 1000;
 	
 	// Background layer
@@ -44,6 +44,7 @@ gc.Game = function(){
 	
 	// Enemy Factory
 	this.enemyFactory = new gc.EnemyFactory(this, this.cpu);
+	
 }
 goog.inherits(gc.Game, lime.Scene);
 
@@ -54,7 +55,7 @@ gc.Game.prototype.start = function(){
 }
 
 gc.Game.prototype.step_ = function(dt){
-	// this.cpu.update();
+	
 	this.sidebar.updateBar();
 // 	
 	// if(cpu.getStatus() >= 100){
@@ -75,7 +76,7 @@ gc.Game.prototype.step_ = function(dt){
 }
 
 gc.Game.prototype.scheduleSpawn = function(){
-	this.enemyFactory.spawnZombies();
+	this.enemyFactory.spawnEnemies();
 }
 
 gc.Game.prototype.recoverCpu = function(){
