@@ -40,8 +40,8 @@ gc.Game = function(){
 	this.sideLayer.appendChild(this.sidebar);
 	
 	// Player
-	this.player = new gc.Player().setPosition(0, 50);
-	this.playerLayer.appendChild(this.player);
+	this.player = new gc.Player(this).setPosition(0, 50);
+	this.backLayer.appendChild(this.player);
 	
 	// Enemies
 	this.enemies = new Array();
@@ -49,7 +49,7 @@ gc.Game = function(){
 	// Enemy Factory
 	this.enemyFactory = new gc.EnemyFactory(this, this.cpu);
 	
-	goog.events.listen(this, 'mousedown', this.player.moveToPos);
+	goog.events.listen(this, 'mousedown', this.moveToPos);
 }
 goog.inherits(gc.Game, lime.Scene);
 
@@ -80,6 +80,31 @@ gc.Game.prototype.step_ = function(dt){
 	 }
 }
 
+gc.Game.prototype.moveToPos = function(e) {
+	
+	var target = e.position;
+	var speed = this.player.getSpeed();
+	// Compensate target coordinate for board location
+	var pos = this.player.getPosition();	
+	var sbdist = this.board.getSize().width/2 + this.SIDEBAR_WIDTH;
+
+	target.x -= sbdist;
+	target.y -= this.board.getSize().height/2;
+	
+	var distance = goog.math.Coordinate.distance(pos, target);
+	var duration = Math.abs(distance)/speed;
+	
+	
+	if(target.x >= -sbdist){
+  	this.player.runAction( 
+    	new lime.animation.Spawn(
+          	new lime.animation.MoveTo(target).setDuration(duration),
+          	new lime.animation.RotateBy(-720).setDuration(duration)
+      	)
+    );
+   }
+}
+
 gc.Game.prototype.scheduleSpawn = function(){
 	this.enemyFactory.spawnEnemies();
 }
@@ -106,6 +131,9 @@ gc.Game.prototype.getBoardHeight = function(){
 	return gc.HEIGHT;
 }
 
+gc.Game.prototype.getSideBarWidth = function(){
+	return this.SIDEBAR_WIDTH;
+}
 gc.Game.prototype.getSideLayer = function(){
 	return this.sideLayer;
 }
