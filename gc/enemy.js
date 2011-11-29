@@ -8,43 +8,16 @@ gc.Enemy = function(cpu){
 	lime.Sprite.call(this);
 	
 	this.cpu = cpu;
-	/*
-	var x = Math.random() * gc.WIDTH;
-	var y = Math.random() * gc.HEIGHT;
-
-	if(x < gc.WIDTH / 2){
-		x -= gc.WIDTH / 2 - 50;
-	}
-	else{
-		x += gc.WIDTH / 2 + 50;
-	}
-	if(y < gc.HEIGHT / 2){
-		y -= gc.HEIGHT / 2 - 50;
-	}
-	else{
-		y += gc.HEIGHT / 2 + 50;
-	}
-	this.x = x;
-	this.y = y;
-*/
-	this.anim = null;
 	this.v = 1;
 	this.angle = 0; // angle in degrees
-	
 	this.setFill("assets/zombie0.png");
-//	this.setFill(255, 0, 0); // enemy is red... currently
 }
 goog.inherits(gc.Enemy, lime.Sprite);
 
 gc.Enemy.prototype.setAngle = function(angle){
-	this.angle = angle;
-	if(this.anim){
-		this.anim.stop();
-		this.anim.clearTransition(this);
-	}
-	this.anim = new lime.animation.RotateTo(this.angle);
-	this.anim.makeTargetProp(this);
-//	this.anim.update(this.angle, this);
+
+		this.angle = angle + 180;
+	this.setRotation(this.angle);
 	return this;
 }
 
@@ -82,8 +55,3 @@ gc.Enemy.prototype.timeStep = function(){
 	this.move();
 	return this;
 }
-//gc.Enemy.prototype.setPosition = function(x, y){
-	//this.x = x;
-	//this.y = y;
-	//return this;
-//}
