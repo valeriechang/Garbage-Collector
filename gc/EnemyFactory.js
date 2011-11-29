@@ -5,7 +5,7 @@ goog.require('gc.ZombieFactory');
 gc.EnemyFactory = function(game, cpu){
 	this.game = game;
 	this.cpu = cpu;
-	this.zombieDensity = 1;
+	this.zombieDensity = 3;
 	this.bucketZombieDensity = 1;
 	this.forkDensity = .5;
 	this.philosopherDensity = .1;

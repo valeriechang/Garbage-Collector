@@ -82,24 +82,26 @@ gc.Game.prototype.step_ = function(dt){
 
 gc.Game.prototype.moveToPos = function(e) {
 	
-	var target = e.position;
 	var speed = this.player.getSpeed();
-	// Compensate target coordinate for board location
 	var pos = this.player.getPosition();	
 	var sbdist = this.board.getSize().width/2 + this.SIDEBAR_WIDTH;
 
+	// Compensate target coordinate for board location
+	var target = e.position;
 	target.x -= sbdist;
 	target.y -= this.board.getSize().height/2;
 	
+	// Calculate animation duration based on set player speed
 	var distance = goog.math.Coordinate.distance(pos, target);
 	var duration = Math.abs(distance)/speed;
 	
-	// alert(-sbdist);
-	if(target.x >= -this.getBoardWidth() + this.SIDEBAR_WIDTH*2){
+	var spins = 360*this.player.getSpin()*duration;
+	
+	if(target.x >= -this.getBoardWidth() + this.SIDEBAR_WIDTH*2){ // Make sure player doesn't move into sidebar
   		this.player.runAction( 
     		new lime.animation.Spawn(
           		new lime.animation.MoveTo(target).setDuration(duration),
-          		new lime.animation.RotateBy(-720).setDuration(duration)
+          		new lime.animation.RotateBy(-spins).setDuration(duration)
       	)
     );
    }

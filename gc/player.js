@@ -17,6 +17,7 @@ gc.Player = function(game){
 	
 	// this.game = game;
 	this.SPEED = 200;
+	this.SPIN_SPEED = 5;
 	
 	this.setRenderer(lime.Renderer.DOM)
 	    .setFill('assets/grim_stationary1.png')
@@ -40,4 +41,8 @@ gc.Player.prototype.getSpeed = function(){
 
 gc.Player.prototype.setSpeed = function(s){
 	this.SPEED = s;
+}
+
+gc.Player.prototype.getSpin = function(){
+	return this.SPIN_SPEED;
 }
