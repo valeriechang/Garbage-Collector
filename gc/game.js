@@ -23,6 +23,10 @@ gc.Game = function(){
 	this.sideLayer = new lime.Layer().setPosition(this.SIDEBAR_WIDTH/2.0, gc.HEIGHT/2.0);
 	this.appendChild(this.sideLayer);
 	
+	// Player Layer
+	this.playerLayer = new lime.Layer().setPosition(this.SIDEBAR_WIDTH,0);
+	this.appendChild(this.playerLayer);
+	
 	// Main board
 	this.board = new gc.Board(this.getBoardWidth(), this.getBoardHeight(), this);
 	this.backLayer.appendChild(this.board);
@@ -37,7 +41,7 @@ gc.Game = function(){
 	
 	// Player
 	this.player = new gc.Player().setPosition(0, 50);
-	this.backLayer.appendChild(this.player);
+	this.playerLayer.appendChild(this.player);
 	
 	// Enemies
 	this.enemies = new Array();
@@ -45,6 +49,7 @@ gc.Game = function(){
 	// Enemy Factory
 	this.enemyFactory = new gc.EnemyFactory(this, this.cpu);
 	
+	goog.events.listen(this, 'mousedown', this.player.moveToPos);
 }
 goog.inherits(gc.Game, lime.Scene);
 

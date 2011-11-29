@@ -30,7 +30,6 @@ gc.HEIGHT = 320;
 
 // entrypoint
 gc.start = function(){
-	
 	lime.scheduleManager.setDisplayRate(1000 / 20);
 	gc.director = new lime.Director(document.body,gc.WIDTH,gc.HEIGHT);
 	gc.director.makeMobileWebAppCapable();
