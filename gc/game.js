@@ -94,12 +94,12 @@ gc.Game.prototype.moveToPos = function(e) {
 	var distance = goog.math.Coordinate.distance(pos, target);
 	var duration = Math.abs(distance)/speed;
 	
-	
-	if(target.x >= -sbdist){
-  	this.player.runAction( 
-    	new lime.animation.Spawn(
-          	new lime.animation.MoveTo(target).setDuration(duration),
-          	new lime.animation.RotateBy(-720).setDuration(duration)
+	// alert(-sbdist);
+	if(target.x >= -this.getBoardWidth() + this.SIDEBAR_WIDTH*2){
+  		this.player.runAction( 
+    		new lime.animation.Spawn(
+          		new lime.animation.MoveTo(target).setDuration(duration),
+          		new lime.animation.RotateBy(-720).setDuration(duration)
       	)
     );
    }
