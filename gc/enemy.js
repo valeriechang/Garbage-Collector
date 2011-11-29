@@ -2,6 +2,7 @@ goog.provide('gc.Enemy');
 
 goog.require('lime.Sprite');
 goog.require("goog.math.Coordinate");
+goog.require("lime.animation.RotateTo");
 
 gc.Enemy = function(cpu){
 	lime.Sprite.call(this);
@@ -26,17 +27,24 @@ gc.Enemy = function(cpu){
 	this.x = x;
 	this.y = y;
 */
-
+	this.anim = null;
 	this.v = 1;
 	this.angle = 0; // angle in degrees
 	
-	
-	this.setFill(255, 0, 0); // enemy is red... currently
+	this.setFill("assets/zombie0.png");
+//	this.setFill(255, 0, 0); // enemy is red... currently
 }
 goog.inherits(gc.Enemy, lime.Sprite);
 
 gc.Enemy.prototype.setAngle = function(angle){
 	this.angle = angle;
+	if(this.anim){
+		this.anim.stop();
+		this.anim.clearTransition(this);
+	}
+	this.anim = new lime.animation.RotateTo(this.angle);
+	this.anim.makeTargetProp(this);
+//	this.anim.update(this.angle, this);
 	return this;
 }
 
