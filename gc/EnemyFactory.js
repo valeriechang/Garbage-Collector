@@ -20,7 +20,7 @@ gc.EnemyFactory.prototype.spawnEnemies = function(){
 	// Spawn regular zombies
 	var zombieFactory = new gc.ZombieFactory(this.cpu);
 	this.createEnemyType(zombieFactory, this.zombieDensity, this.zombieProb);
-	this.zombieDensity += .001;
+	this.zombieDensity += .1;
 }
 
 gc.EnemyFactory.prototype.createEnemyType = function(factory, density, prob){
