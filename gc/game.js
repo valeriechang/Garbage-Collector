@@ -69,6 +69,7 @@ gc.Game.prototype.step_ = function(dt){
 		if(Math.abs(pos.x) < 20 && Math.abs(pos.y < 20)){
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
+		 	this.cpu.takeHit(5);
 		}
 		else if(this.detectCollision(this.player, this.enemies[i])){
 			this.backLayer.removeChild(this.enemies[i]);
@@ -119,15 +120,14 @@ gc.Game.prototype.recoverCpu = function(){
 gc.Game.prototype.detectCollision = function(obj1, obj2){
 	
 	var x1 = obj1.getSize().width/2;
-	var x2 = obj2.getSize().width/2;
-	var y1 = obj1.getSize().height/2;
-	var y2 = obj2.getSize().height/2;
-	
-	var rad1 = Math.sqrt(x1*x1 + y1*y1);
-	var rad2 = Math.sqrt(x2*x2 + y1*y1);
+	// var x2 = obj2.getSize().width/2;
+	// var y1 = obj1.getSize().height/2;
+	// var y2 = obj2.getSize().height/2;
+// 	
+	// var rad1 = Math.sqrt(x1*x1 + y1*y1);
+	// var rad2 = Math.sqrt(x2*x2 + y1*y1);
 	
 	var dist = goog.math.Coordinate.distance(obj1.getPosition(), obj2.getPosition());
-	console.log(dist);
 	
 	if(Math.abs(dist) <= x1/2)
 		return true;
