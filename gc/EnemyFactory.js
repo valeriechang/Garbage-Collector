@@ -1,6 +1,7 @@
 goog.provide('gc.EnemyFactory');
 
 goog.require('gc.ZombieFactory');
+goog.require('gc.BucketZombieFactory');
 
 gc.EnemyFactory = function(game, cpu){
 	this.game = game;
@@ -20,7 +21,7 @@ gc.EnemyFactory.prototype.spawnEnemies = function(){
 	// Spawn regular zombies
 	var zombieFactory = new gc.ZombieFactory(this.cpu);
 	this.createEnemyType(zombieFactory, this.zombieDensity, this.zombieProb);
-	this.zombieDensity += .1;
+	this.zombieDensity += .01;
 }
 
 gc.EnemyFactory.prototype.createEnemyType = function(factory, density, prob){

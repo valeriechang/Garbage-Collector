@@ -3,6 +3,7 @@ goog.provide('gc.SideBar');
 
 //request that lime.SideBar definitions are loaded
 goog.require('lime.Button');
+goog.require('gc.Game');
 goog.require('lime.GlossyButton');
 goog.require('lime.fill.Fill');
 goog.require('lime.Sprite');
@@ -66,23 +67,13 @@ gc.SideBar = function (width, height, game, cpu) {
     });
 
 	//initial cpuOverButton values
-	var cpuOverState = false;
+	this.cpuOverState = false;
 	
-	var cpuOverBtn = new lime.GlossyButton('OC').setSize(btnWidth, btnHeight).
+	this.cpuOverBtn = new lime.GlossyButton('OC').setSize(btnWidth, btnHeight).
 		setPosition(0, btnPosY).setColor('#4359C4');
-	this.appendChild(cpuOverBtn);
+	this.appendChild(this.cpuOverBtn);
 		
-	goog.events.listen(cpuOverBtn, ['touchstart', 'mousedown'], function () {
-		if (!cpuOverState) {
-			cpuOverState = true;
-			cpuOverBtn.setColor('#D71413').setText('!!!');
-			// insert overclock mode turned on code here
-		} else {
-			cpuOverState = false;
-			cpuOverBtn.setColor('#4359C4').setText('OC');
-			// insert overclock mode turned off code here
-		}
-	});
+	goog.events.listen(this.cpuOverBtn, ['touchstart', 'mousedown'], this.OC, true, this);
 };
 
 //define parent class
@@ -97,6 +88,26 @@ gc.SideBar.prototype.updateBar = function () {
 	}
 };
 
-/*gc.SideBar.prototype.overclockOnOff = function() {
+gc.SideBar.prototype.OC = function(){
+	if (!this.cpuOverState) {
+			this.cpuOverState = true;
+			this.cpuOverBtn.setColor('#D71413').setText('!!!');
+			// gc.Game.startOC();
+			this.game.startOC();
+			// insert overclock mode turned on code here
+		} else {
+			this.cpuOverState = false;
+			this.cpuOverBtn.setColor('#4359C4').setText('OC');
+			// insert overclock mode turned off code here
+			// gc.Game.endOC();
+			this.game.endOC();
+		}
+}
 
-}*/
+gc.SideBar.prototype.startOC = function() {
+
+}
+
+gc.SideBar.prototype.endOC = function(){
+	
+}

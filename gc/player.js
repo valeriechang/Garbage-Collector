@@ -11,13 +11,13 @@ gc.Player = function(game){
 	
 	this.game = game;
 
-	//this.setAnchorPoint(0, 0);
-	//this.setFill('assets/grim_stationary1.png');
-	//this.setSize(600,600);
-	
-	// this.game = game;
 	this.SPEED = 200;
+	this.OC_SPEED = 600;
+	this.speed = this.SPEED;
+	
 	this.SPIN_SPEED = 5;
+	this.OC_SPIN_SPEED = 10;
+	this.spinSpeed = this.SPIN_SPEED;
 	
 	this.setRenderer(lime.Renderer.DOM)
 	    .setFill('assets/grim_stationary1.png')
@@ -36,13 +36,23 @@ gc.Player = function(game){
 goog.inherits(gc.Player, lime.Sprite);
 
 gc.Player.prototype.getSpeed = function(){
-	return this.SPEED;
+	return this.speed;
 }
 
 gc.Player.prototype.setSpeed = function(s){
-	this.SPEED = s;
+	this.speed = s;
 }
 
 gc.Player.prototype.getSpin = function(){
-	return this.SPIN_SPEED;
+	return this.spinSpeed;
+}
+
+gc.Player.prototype.startOC = function(){
+	this.speed = this.OC_SPEED;
+	this.spinSpeed = this.OC_SPIN_SPEED;
+}
+
+gc.Player.prototype.endOC = function(){
+	this.speed = this.SPEED;
+	this.spinSpeed = this.SPIN_SPEED;
 }

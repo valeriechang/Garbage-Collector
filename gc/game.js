@@ -12,7 +12,7 @@ gc.Game = function(){
 	lime.Scene.call(this);
 	
 	this.SIDEBAR_WIDTH = gc.WIDTH/5.0;
-	this.SPAWN_RATE = 2000; 
+	this.SPAWN_RATE = 1000; 
 	this.RECOVERY_RATE = 1000;
 	
 	// Background layer
@@ -158,4 +158,12 @@ gc.Game.prototype.getSideBarWidth = function(){
 }
 gc.Game.prototype.getSideLayer = function(){
 	return this.sideLayer;
+}
+
+gc.Game.prototype.startOC = function(){
+	this.player.startOC();
+}
+
+gc.Game.prototype.endOC = function(){
+	this.player.endOC();
 }
