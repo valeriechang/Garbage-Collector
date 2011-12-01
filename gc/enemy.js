@@ -11,6 +11,7 @@ gc.Enemy = function(cpu){
 	this.v = 1;
 	this.angle = 0; // angle in degrees
 	this.setFill("assets/zombie0.png");
+	this.dead = false;
 }
 goog.inherits(gc.Enemy, lime.Sprite);
 
@@ -45,6 +46,14 @@ gc.Enemy.prototype.move = function(){
 	this.y += ymul * Math.sin(this.angle) * this.v;
 	this.setPosition(this.x, this.y);
 	return this;
+}
+
+gc.Enemy.prototype.takeHit = function(){
+	this.dead = true;
+}
+
+gc.Enemy.prototype.isDead = function(){
+	return this.dead;
 }
 
 gc.Enemy.prototype.timeStep = function(){
