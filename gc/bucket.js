@@ -27,6 +27,10 @@ gc.Bucket.prototype.takeHit = function(){
 	}
 }
 
+gc.Enemy.prototype.score = function(){
+	return 10;
+}
+
 gc.Bucket.prototype.isDead = function(){
 	return this.dead;
 }

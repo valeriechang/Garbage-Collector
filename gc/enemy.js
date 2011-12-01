@@ -56,6 +56,10 @@ gc.Enemy.prototype.isDead = function(){
 	return this.dead;
 }
 
+gc.Enemy.prototype.score = function(){
+	return 5;
+}
+
 gc.Enemy.prototype.timeStep = function(){
 	// enemies move towards the CPU
 	var theta = this.angleTowards(this.cpu);
