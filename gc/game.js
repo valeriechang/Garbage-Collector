@@ -84,9 +84,9 @@ gc.Game.prototype.step_ = function(dt){
 		}
 	}
 	 
-	// if(this.cpu.getStatus() <= 0){
-		// this.endGame();
-	// }
+	if(this.cpu.getStatus() >= 100){
+		this.endGame();
+	}
 }
 
 gc.Game.prototype.moveToPos = function(e) {
@@ -126,17 +126,11 @@ gc.Game.prototype.recoverCpu = function(){
 
 gc.Game.prototype.detectCollision = function(obj1, obj2){
 	
-	var x1 = obj1.getSize().width/2;
-	// var x2 = obj2.getSize().width/2;
-	// var y1 = obj1.getSize().height/2;
-	// var y2 = obj2.getSize().height/2;
-// 	
-	// var rad1 = Math.sqrt(x1*x1 + y1*y1);
-	// var rad2 = Math.sqrt(x2*x2 + y1*y1);
+	var x1 = obj1.getSize().width/4;
 	
 	var dist = goog.math.Coordinate.distance(obj1.getPosition(), obj2.getPosition());
 	
-	if(Math.abs(dist) <= x1/2)
+	if(Math.abs(dist) <= x1)
 		return true;
 	else
 		return false;
@@ -169,8 +163,10 @@ gc.Game.prototype.getSideLayer = function(){
 
 gc.Game.prototype.startOC = function(){
 	this.player.startOC();
+	this.cpu.startOC();
 }
 
 gc.Game.prototype.endOC = function(){
 	this.player.endOC();
+	this.cpu.endOC();
 }

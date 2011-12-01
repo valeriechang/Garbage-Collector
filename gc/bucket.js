@@ -19,15 +19,18 @@ gc.Bucket = function(cpu) {
 goog.inherits(gc.Bucket, gc.Enemy);
 
 gc.Bucket.prototype.takeHit = function(){
-	this.setFill("assets/zombie0.png");
 	if(this.hit == false){
+		this.setFill("assets/zombie0.png");
 		this.hit = true;
+		// Set a time delay before the next time the player may hit the zombie. This prevents
+		// the player from knocking off the zombie's helmet and killing it in the same attack
 		this.hittable = false;
+		lime.scheduleManager.scheduleWithDelay(this.makeKillable, this, 500, 1);
 	}
 	else if(this.hittable){
 		this.dead = true;
 	}
-	lime.scheduleManager.scheduleWithDelay(this.makeKillable, this, 500, 1);
+	
 
 }
 
