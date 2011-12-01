@@ -11,7 +11,8 @@ gc.EnemyFactory = function(game, cpu){
 	this.forkDensity = .5;
 	this.philosopherDensity = .1;
 	
-	this.zombieProb = 30;
+	this.zombieProb = 20;
+	this.bucketZombieProb = 5;
 	this.boardWidth = game.getBoardWidth();
 	this.boardHeight = game.getBoardHeight();
 }
@@ -22,6 +23,10 @@ gc.EnemyFactory.prototype.spawnEnemies = function(){
 	var zombieFactory = new gc.ZombieFactory(this.cpu);
 	this.createEnemyType(zombieFactory, this.zombieDensity, this.zombieProb);
 	this.zombieDensity += .01;
+	
+	var bucketFactory = new gc.BucketZombieFactory(this.cpu);
+	this.createEnemyType(bucketFactory, this.bucketZombieDensity, this.bucketZombieProb);
+	this.bucketZombieDensity += .01;
 }
 
 gc.EnemyFactory.prototype.createEnemyType = function(factory, density, prob){

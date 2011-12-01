@@ -92,14 +92,10 @@ gc.SideBar.prototype.OC = function(){
 	if (!this.cpuOverState) {
 			this.cpuOverState = true;
 			this.cpuOverBtn.setColor('#D71413').setText('!!!');
-			// gc.Game.startOC();
 			this.game.startOC();
-			// insert overclock mode turned on code here
 		} else {
 			this.cpuOverState = false;
 			this.cpuOverBtn.setColor('#4359C4').setText('OC');
-			// insert overclock mode turned off code here
-			// gc.Game.endOC();
 			this.game.endOC();
 		}
 }

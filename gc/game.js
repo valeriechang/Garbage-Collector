@@ -70,8 +70,15 @@ gc.Game.prototype.step_ = function(dt){
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
 		 	this.cpu.takeHit(5);
+		 	continue;
 		}
-		else if(this.detectCollision(this.player, this.enemies[i])){
+		
+		// Detect player hit
+		if(this.detectCollision(this.player, this.enemies[i])){
+			this.enemies[i].takeHit();
+		}
+		// Clean up dead zombies
+		if(this.enemies[i].isDead()){
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);
 		}
