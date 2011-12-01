@@ -10,8 +10,23 @@ gc.Bucket = function(cpu) {
 	this.cpu = cpu;
 	this.v = 1;
 	this.angle = 0; // angle in degrees
-	
+	this.dead = false;
+	this.hit = false;
 	
 	this.setFill('assets/zombieBucket0.png'); // enemy is red... currently
 }
 goog.inherits(gc.Bucket, gc.Enemy);
+
+gc.Bucket.prototype.takeHit = function(){
+	this.setFill("assets/zombie0.png");
+	if(this.hit == false){
+		this.hit = true;
+	}
+	else{
+		this.dead = true;
+	}
+}
+
+gc.Bucket.prototype.isDead = function(){
+	return this.dead;
+}
