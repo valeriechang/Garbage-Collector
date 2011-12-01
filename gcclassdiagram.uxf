@@ -86,11 +86,12 @@ m2=1</panel_attributes>
       <x>240</x>
       <y>360</y>
       <w>100</w>
-      <h>40</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Enemy
 --
-timeStep()</panel_attributes>
+timeStep()
+takeHit()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -181,12 +182,12 @@ m2=1</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>370</y>
+      <y>390</y>
       <w>50</w>
-      <h>160</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;140</additional_attributes>
+    <additional_attributes>30;30;30;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>

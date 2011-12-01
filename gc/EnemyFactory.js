@@ -5,10 +5,10 @@ goog.require('gc.ZombieFactory');
 gc.EnemyFactory = function(game, cpu){
 	this.game = game;
 	this.cpu = cpu;
-	this.zombieDensity = 1;
+	this.zombieDensity = 3;
 	this.bucketZombieDensity = 1;
 	this.forkDensity = .5;
-	this.PhilosopherDensity = .1;
+	this.philosopherDensity = .1;
 	
 	this.zombieProb = 30;
 	this.boardWidth = game.getBoardWidth();
@@ -20,7 +20,7 @@ gc.EnemyFactory.prototype.spawnEnemies = function(){
 	// Spawn regular zombies
 	var zombieFactory = new gc.ZombieFactory(this.cpu);
 	this.createEnemyType(zombieFactory, this.zombieDensity, this.zombieProb);
-	this.zombieDensity += .001;
+	this.zombieDensity += .1;
 }
 
 gc.EnemyFactory.prototype.createEnemyType = function(factory, density, prob){

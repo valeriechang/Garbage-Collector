@@ -8,7 +8,7 @@ gc.Cpu = function(){
 	this.REC_AMT = 1;
 	
 	this.setFill('assets/cpu.png');
-	this.status = 100;
+	this.status = 0;
 }
 goog.inherits(gc.Cpu, lime.RoundedRect);
 

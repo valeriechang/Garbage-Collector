@@ -40,8 +40,8 @@ gc.Game = function(){
 	this.sideLayer.appendChild(this.sidebar);
 	
 	// Player
-	this.player = new gc.Player().setPosition(0, 50);
-	this.playerLayer.appendChild(this.player);
+	this.player = new gc.Player(this).setPosition(0, 50);
+	this.backLayer.appendChild(this.player);
 	
 	// Enemies
 	this.enemies = new Array();
@@ -49,7 +49,7 @@ gc.Game = function(){
 	// Enemy Factory
 	this.enemyFactory = new gc.EnemyFactory(this, this.cpu);
 	
-	goog.events.listen(this, 'mousedown', this.player.moveToPos);
+	goog.events.listen(this, 'mousedown', this.moveToPos);
 }
 goog.inherits(gc.Game, lime.Scene);
 
@@ -62,22 +62,51 @@ gc.Game.prototype.start = function(){
 gc.Game.prototype.step_ = function(dt){
 	
 	this.sidebar.updateBar();
-// 	
-	// if(cpu.getStatus() >= 100){
-		// endGame();
-	// }     
-// 	
-	// this.player.timeStep();
 	
-	
-	 for(i=0; i<this.enemies.length; ++i){
-		 this.enemies[i].timeStep();
-		 var pos = this.enemies[i].getPosition();
-		 if(Math.abs(pos.x) < 20 && Math.abs(pos.y < 20)){
-		 	this.backLayer.removeChild(this.enemies[i]);
+	for(i=0; i<this.enemies.length; ++i){
+		this.enemies[i].timeStep();
+		var pos = this.enemies[i].getPosition();
+		if(Math.abs(pos.x) < 20 && Math.abs(pos.y < 20)){
+			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
-		 }
-	 }
+		 	this.cpu.takeHit(5);
+		}
+		else if(this.detectCollision(this.player, this.enemies[i])){
+			this.backLayer.removeChild(this.enemies[i]);
+		 	this.enemies.splice(i, 1);
+		}
+	}
+	 
+	// if(this.cpu.getStatus() <= 0){
+		// this.endGame();
+	// }
+}
+
+gc.Game.prototype.moveToPos = function(e) {
+	
+	var speed = this.player.getSpeed();
+	var pos = this.player.getPosition();	
+	var sbdist = this.board.getSize().width/2 + this.SIDEBAR_WIDTH;
+
+	// Compensate target coordinate for board location
+	var target = e.position;
+	target.x -= sbdist;
+	target.y -= this.board.getSize().height/2;
+	
+	// Calculate animation duration based on set player speed
+	var distance = goog.math.Coordinate.distance(pos, target);
+	var duration = Math.abs(distance)/speed;
+	
+	var spins = 360*this.player.getSpin()*duration;
+	
+	if(target.x >= -this.getBoardWidth() + this.SIDEBAR_WIDTH*2){ // Make sure player doesn't move into sidebar
+  		this.player.runAction( 
+    		new lime.animation.Spawn(
+          		new lime.animation.MoveTo(target).setDuration(duration),
+          		new lime.animation.RotateBy(-spins).setDuration(duration)
+      	)
+    );
+   }
 }
 
 gc.Game.prototype.scheduleSpawn = function(){
@@ -88,8 +117,26 @@ gc.Game.prototype.recoverCpu = function(){
 	this.cpu.incRecover();
 }
 
-gc.Game.prototype.endGame = function(){
+gc.Game.prototype.detectCollision = function(obj1, obj2){
 	
+	var x1 = obj1.getSize().width/2;
+	// var x2 = obj2.getSize().width/2;
+	// var y1 = obj1.getSize().height/2;
+	// var y2 = obj2.getSize().height/2;
+// 	
+	// var rad1 = Math.sqrt(x1*x1 + y1*y1);
+	// var rad2 = Math.sqrt(x2*x2 + y1*y1);
+	
+	var dist = goog.math.Coordinate.distance(obj1.getPosition(), obj2.getPosition());
+	
+	if(Math.abs(dist) <= x1/2)
+		return true;
+	else
+		return false;
+}
+
+gc.Game.prototype.endGame = function(){
+	gc.prevScene();
 }
 
 gc.Game.prototype.createEnemy = function(x,y,enemy){
@@ -106,6 +153,9 @@ gc.Game.prototype.getBoardHeight = function(){
 	return gc.HEIGHT;
 }
 
+gc.Game.prototype.getSideBarWidth = function(){
+	return this.SIDEBAR_WIDTH;
+}
 gc.Game.prototype.getSideLayer = function(){
 	return this.sideLayer;
 }
