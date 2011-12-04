@@ -34,7 +34,7 @@ gc.Bucket.prototype.takeHit = function(){
 
 }
 
-gc.Enemy.prototype.score = function(){
+gc.Bucket.prototype.score = function(){
 	return 10;
 }	
 
