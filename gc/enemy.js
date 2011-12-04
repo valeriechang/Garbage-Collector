@@ -8,12 +8,22 @@ goog.require("lime.animation.KeyframeAnimation");
 
 gc.Enemy = function(cpu){
 	lime.Sprite.call(this);
+	this.onZombieHitSound = new lime.audio.Audio('assets/Sounds/splat.mp3');
 	this.cpu = cpu;
 	this.v = 1;
 	this.angle = 0; // angle in degrees
 	this.setFill("assets/zombie0.png");
 	this.dead = false;
+	this.setupAnimation();
+}
+goog.inherits(gc.Enemy, lime.Sprite);
 
+gc.Enemy.prototype.playOnZombieHitSound = function() {
+	this.onZombieHitSound.stop();
+	this.onZombieHitSound.play();	
+}
+
+gc.Enemy.prototype.setupAnimation = function(){
 	var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];
    					  
 	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
@@ -22,7 +32,6 @@ gc.Enemy = function(cpu){
   }
  	this.runAction(walkingAnim);
 }
-goog.inherits(gc.Enemy, lime.Sprite);
 
 gc.Enemy.prototype.setAngle = function(angle){
 	if(this.x > 0){
@@ -63,6 +72,7 @@ gc.Enemy.prototype.move = function(){
 }
 
 gc.Enemy.prototype.takeHit = function(){
+	this.playOnZombieHitSound();
 	this.dead = true;
 }
 

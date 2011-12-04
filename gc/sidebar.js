@@ -13,6 +13,11 @@ gc.SideBar = function (width, height, game, cpu) {
 	//call parents constructor
 	lime.Sprite.call(this);
 
+	// Overclock sound for when the overclock button is on
+	this.overclockMusic = new lime.audio.Audio('assets/Sounds/RainbowTrololol.mp3');
+	// Alarm sound for high cpu bar
+	this.alarmSound = new lime.audio.Audio('assets/Sounds/alarm-fatal.mp3');
+
 	//initial sideBar values
 	this.game = game;
 	this.cpu = cpu;
@@ -41,7 +46,7 @@ gc.SideBar = function (width, height, game, cpu) {
 	this.healthBar.setMask(this.mask);
 	
 	//initial soundButton values
-	var bgMusic = new lime.audio.Audio('assets/Sounds/Song6.mp3');
+	var bgMusic = new lime.audio.Audio('assets/Sounds/Song6Long.mp3');
 	var isMusicPlaying = bgMusic.isPlaying();
 	
 	var soundBtnBg = new lime.Sprite().setFill('assets/sound_0.png').
@@ -86,18 +91,35 @@ gc.SideBar.prototype.updateBar = function () {
 	if (heightGrowth <= this.healthBarHeight*2.05) {
 		this.mask.setSize(this.healthBarWidth, heightGrowth);
 	}
+	if(heightGrowth >= 300) {
+		this.alarmSound.play();
+	} else {
+		this.alarmSound.stop();
+	}
+
 };
+
+gc.SideBar.prototype.playOverclockMusic = function() {
+	this.overclockMusic.stop();
+	this.overclockMusic.play();
+}
+
+gc.SideBar.prototype.stopOverclockMusic = function() {
+	this.overclockMusic.stop();
+}
 
 gc.SideBar.prototype.OC = function(){
 	if (!this.cpuOverState) {
-			this.cpuOverState = true;
-			this.cpuOverBtn.setColor('#D71413').setText('!!!');
-			this.game.startOC();
-		} else {
-			this.cpuOverState = false;
-			this.cpuOverBtn.setColor('#4359C4').setText('OC');
-			this.game.endOC();
-		}
+		this.playOverclockMusic();
+		this.cpuOverState = true;
+		this.cpuOverBtn.setColor('#D71413').setText('!!!');
+		this.game.startOC();
+	} else {
+		this.stopOverclockMusic();
+		this.cpuOverState = false;
+		this.cpuOverBtn.setColor('#4359C4').setText('OC');
+		this.game.endOC();
+	}
 }
 
 gc.SideBar.prototype.startOC = function() {
