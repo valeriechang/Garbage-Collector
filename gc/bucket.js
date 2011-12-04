@@ -14,9 +14,21 @@ gc.Bucket = function(cpu) {
 	this.hit = false;
 	this.hittable = true;
 	
-	this.setFill('assets/zombieBucket0.png'); // enemy is red... currently
+	//this.setFill('assets/zombieBucket0.png'); // enemy is red... currently
+	this.setupAnimation();
 }
 goog.inherits(gc.Bucket, gc.Enemy);
+
+
+gc.Bucket.prototype.setupAnimation = function(){
+	var movingPics = ['assets/zombieBucket0.png', 'assets/zombieBucket1.png'];
+   					  
+	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
+  for(var i = 0; i < movingPics.length; i++) {
+    walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
+  }
+ 	this.runAction(walkingAnim);
+}
 
 gc.Bucket.prototype.takeHit = function(){
 	this.setFill("assets/zombie0.png");
