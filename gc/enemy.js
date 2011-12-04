@@ -3,20 +3,28 @@ goog.provide('gc.Enemy');
 goog.require('lime.Sprite');
 goog.require("goog.math.Coordinate");
 goog.require("lime.animation.RotateTo");
+goog.require("lime.fill.Image");
+goog.require("lime.animation.KeyframeAnimation");
 
 gc.Enemy = function(cpu){
 	lime.Sprite.call(this);
-	
 	this.cpu = cpu;
 	this.v = 1;
 	this.angle = 0; // angle in degrees
 	this.setFill("assets/zombie0.png");
 	this.dead = false;
+
+	var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];
+   					  
+	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
+  for(var i = 0; i < movingPics.length; i++) {
+    walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
+  }
+ 	this.runAction(walkingAnim);
 }
 goog.inherits(gc.Enemy, lime.Sprite);
 
 gc.Enemy.prototype.setAngle = function(angle){
-
 	if(this.x > 0){
 		this.angle = -angle % 90;
 	}
