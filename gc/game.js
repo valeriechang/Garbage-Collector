@@ -107,6 +107,19 @@ gc.Game.prototype.moveToPos = function(e) {
 	var spins = 360*this.player.getSpin()*duration;
 	
 	if(target.x >= -this.getBoardWidth() + this.SIDEBAR_WIDTH*2){ // Make sure player doesn't move into sidebar
+		if(!this.player.getIsOverclockOn()){
+			if(duration > 1.5) {
+				this.player.playLongMoveSound();
+			} else {
+				this.player.playNormalMoveSound();
+			}
+		} else {
+			if(duration > 1.5) {
+				this.player.playLongMoveSound();
+			} else {
+				this.player.playOverclockMoveSound();
+			}
+		}
   		this.player.runAction( 
     		new lime.animation.Spawn(
           		new lime.animation.MoveTo(target).setDuration(duration),

@@ -7,6 +7,9 @@ goog.require('gc.Enemy');
 gc.Bucket = function(cpu) {
 	gc.Enemy.call(this);
 	
+	this.onZombieHitSound = new lime.audio.Audio('assets/Sounds/splat.mp3');
+	this.bucketHeadHit = new lime.audio.Audio('assets/Sounds/bucketHead.mp3');
+
 	this.cpu = cpu;
 	this.v = 1;
 	this.angle = 0; // angle in degrees
@@ -19,6 +22,15 @@ gc.Bucket = function(cpu) {
 }
 goog.inherits(gc.Bucket, gc.Enemy);
 
+gc.Bucket.prototype.playBucketHeadHitSound = function() {
+	this.bucketHeadHit.stop();
+	this.bucketHeadHit.play();
+}
+
+gc.Bucket.prototype.playOnZombieHitSound = function() {
+	this.onZombieHitSound.stop();
+	this.onZombieHitSound.play();
+}
 
 gc.Bucket.prototype.setupAnimation = function(){
 	var movingPics = ['assets/zombieBucket0.png', 'assets/zombieBucket1.png'];
@@ -33,14 +45,15 @@ gc.Bucket.prototype.setupAnimation = function(){
 gc.Bucket.prototype.takeHit = function(){
 	this.setFill("assets/zombie0.png");
 	if(this.hit == false){
+		this.playBucketHeadHitSound();
 		this.hit = true;
 		this.hittable = false;
 	}
 	else if(this.hittable){
+		this.playOnZombieHitSound();
 		this.dead = true;
 	}
 	lime.scheduleManager.scheduleWithDelay(this.makeKillable, this, 500, 1);
-
 }
 
 gc.Enemy.prototype.score = function(){
