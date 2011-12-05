@@ -74,7 +74,7 @@ gc.Game.prototype.start = function(){
 	lime.scheduleManager.schedule(this.step_, this);
 }
 
-gc.Game.prototype.step_ = function(dt){
+gc.Game.prototype.step_ = function(){
 	
 	this.sidebar.updateBar();
 	
@@ -84,7 +84,7 @@ gc.Game.prototype.step_ = function(dt){
 		var cpuTop = this.cpu.getPosition().y + this.cpu.getSize().height/2;
 		var cpuSide = this.cpu.getPosition().x + this.cpu.getSize().width/2;
 		
-		if(Math.abs(pos.x) < cpuSide && Math.abs(pos.y < cpuTop)){
+		if(Math.abs(pos.x) < cpuSide && Math.abs(pos.y) < cpuTop){
 		// if(this.detectCollision(this.cpu, this.enemies[i])){
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
