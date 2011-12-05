@@ -15,6 +15,8 @@ gc.Game = function(){
 	this.SPAWN_RATE = 1000; 
 	this.RECOVERY_RATE = 1000;
 	
+	this.points = 0; // Player's accumulated score over the course of the game 
+	
 	// Background layer
 	this.backLayer = new lime.Layer().setPosition(gc.WIDTH/2.0 + this.SIDEBAR_WIDTH/2 , gc.HEIGHT/2.0);
 	this.appendChild(this.backLayer);
@@ -49,6 +51,19 @@ gc.Game = function(){
 	// Enemy Factory
 	this.enemyFactory = new gc.EnemyFactory(this, this.cpu);
 	
+	 // label for score message
+	var x_lbl = -this.board.getSize().width/2;
+	var y_lbl = -this.board.getSize().height/2;
+	var offset = 35;
+    var score_lbl = new lime.Label().setFontFamily('Trebuchet MS').setFontColor('#4f96ed').setFontSize(10).
+        setPosition(x_lbl, y_lbl).setText('Score:').setAnchorPoint(0, 0).setFontWeight(700);
+    this.backLayer.appendChild(score_lbl);
+
+    // score message label
+    this.score = new lime.Label().setFontColor('#fff').setFontSize(10).setText(0).setPosition(x_lbl + offset, y_lbl)
+        .setAnchorPoint(0, 0).setFontWeight(700);
+    this.backLayer.appendChild(this.score);
+	
 	goog.events.listen(this, 'mousedown', this.moveToPos);
 }
 goog.inherits(gc.Game, lime.Scene);
@@ -66,19 +81,25 @@ gc.Game.prototype.step_ = function(dt){
 	for(i=0; i<this.enemies.length; ++i){
 		this.enemies[i].timeStep();
 		var pos = this.enemies[i].getPosition();
-		if(Math.abs(pos.x) < 20 && Math.abs(pos.y < 20)){
+		var cpuTop = this.cpu.getPosition().y + this.cpu.getSize().height/2;
+		var cpuSide = this.cpu.getPosition().x + this.cpu.getSize().width/2;
+		
+		if(Math.abs(pos.x) < cpuSide && Math.abs(pos.y < cpuTop)){
+		// if(this.detectCollision(this.cpu, this.enemies[i])){
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
 		 	this.cpu.takeHit(5);
 		 	continue;
 		}
 		
-		// Detect player hit
+		// Detect player hitting an enemy
 		if(this.detectCollision(this.player, this.enemies[i])){
 			this.enemies[i].takeHit();
+			
 		}
 		// Clean up dead zombies
 		if(this.enemies[i].isDead()){
+			this.addScore(this.enemies[i].score());
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);
 		}
@@ -138,9 +159,7 @@ gc.Game.prototype.recoverCpu = function(){
 }
 
 gc.Game.prototype.detectCollision = function(obj1, obj2){
-	
 	var x1 = obj1.getSize().width/4;
-	
 	var dist = goog.math.Coordinate.distance(obj1.getPosition(), obj2.getPosition());
 	
 	if(Math.abs(dist) <= x1)
@@ -182,4 +201,9 @@ gc.Game.prototype.startOC = function(){
 gc.Game.prototype.endOC = function(){
 	this.player.endOC();
 	this.cpu.endOC();
+}
+
+gc.Game.prototype.addScore = function(s){
+	this.points += s;
+	this.score.setText(this.points);
 }
