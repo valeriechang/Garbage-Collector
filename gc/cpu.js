@@ -9,9 +9,11 @@ gc.Cpu = function(){
 	this.onDestructionSound = new lime.audio.Audio('assets/Sounds/kaboom.mp3');
 
 	this.REC_AMT = 1;
+	this.OC_DMG = 2;
 	
 	this.setFill('assets/cpu.png');
 	this.status = 0;
+	this.isOC = false;
 }
 goog.inherits(gc.Cpu, lime.RoundedRect);
 
@@ -30,8 +32,21 @@ gc.Cpu.prototype.takeHit = function(damage){
 }
 
 gc.Cpu.prototype.incRecover = function(){
-	this.status -= this.REC_AMT;
-	if(this.status < 0){
-		this.status = 0;
-	} 
+	if(this.isOC){
+		this.status += this.OC_DMG;
+	}
+	else{
+		this.status -= this.REC_AMT;
+		if(this.status < 0){
+			this.status = 0;
+		} 
+	}
+}
+
+gc.Cpu.prototype.startOC = function(){
+	this.isOC = true;
+}
+
+gc.Cpu.prototype.endOC = function(){
+	this.isOC = false;
 }
