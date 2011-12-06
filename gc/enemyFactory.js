@@ -30,31 +30,33 @@ gc.EnemyFactory.prototype.spawnEnemies = function(){
 }
 
 gc.EnemyFactory.prototype.createEnemyType = function(factory, density, prob){
-	// Spawn somewhere on the right side
+	var side = this.boardWidth/2;
+	var top = this.boardHeight/2;
+	
 	for(i=0; i<=Math.floor(Math.random()*density); ++i){
 		
 		// Spawn somewhere on right side
 		if(this.spawnProb(prob) > 0){
 			var rightEnemy = factory.createEnemy(this.cpu).setSize(20,20);
-			this.game.createEnemy(this.boardWidth/2, Math.floor(Math.random()*this.boardHeight - this.boardHeight/2),rightEnemy);
+			this.game.createEnemy(side, Math.floor(Math.random()*top - top),rightEnemy);
 		}
 		
 		// Spawn somewhere on left side
 		if(this.spawnProb(prob) > 0){
 			var leftEnemy = factory.createEnemy(this.cpu).setSize(20,20);
-			this.game.createEnemy(-this.boardWidth/2, Math.floor(Math.random()*this.boardHeight - this.boardHeight/2),leftEnemy);
+			this.game.createEnemy(-side, Math.floor(Math.random()*top - top),leftEnemy);
 		}
 		
 		// Spawn somewhere on bottom 
 		if(this.spawnProb(prob) > 0){
 			var bottomEnemy = factory.createEnemy(this.cpu).setSize(20,20);
-			this.game.createEnemy(Math.floor(Math.random()*this.boardWidth - this.boardWidth/2), this.boardHeight/2, bottomEnemy);
+			this.game.createEnemy(Math.floor(Math.random()*side - side), top, bottomEnemy);
 		}
 		
 		// Spawn somewhere on top
 		if(this.spawnProb(prob) > 0){
 			var bottomEnemy = factory.createEnemy(this.cpu).setSize(20,20);
-			this.game.createEnemy(Math.floor(Math.random()*this.boardWidth - this.boardWidth/2), -this.boardHeight/2, bottomEnemy);
+			this.game.createEnemy(Math.floor(Math.random()*side - side), -top, bottomEnemy);
 		}
 	}
 }
