@@ -1,5 +1,6 @@
 goog.provide('gc.Bucket');
 
+goog.require('gc.Game');
 goog.require('lime.Sprite');
 goog.require("goog.math.Coordinate");
 goog.require('gc.Enemy');
@@ -51,12 +52,16 @@ gc.Bucket.prototype.setupAnimation = function(){
 gc.Bucket.prototype.takeHit = function(){
 	this.setFill("assets/zombie0.png");
 	if(this.hit == false){
-		this.playBucketHeadHitSound();
+		if(gc.ISSOUNDON) {
+			this.playBucketHeadHitSound();
+		}
 		this.hit = true;
 		this.hittable = false;
 	}
 	else if(this.hittable){
-		this.playOnZombieHitSound();
+		if(gc.ISSOUNDON) {
+			this.playOnZombieHitSound();
+		}
 		this.dead = true;
 	}
 	lime.scheduleManager.scheduleWithDelay(this.makeKillable, this, 500, 1);

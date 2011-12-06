@@ -28,7 +28,9 @@ gc.Cpu.prototype.getStatus = function(){
 
 gc.Cpu.prototype.takeHit = function(damage){
 	this.status += damage;
-	this.playOnHitSound();
+	if(gc.ISSOUNDON) {
+		this.playOnHitSound();
+	}
 }
 
 gc.Cpu.prototype.incRecover = function(){
