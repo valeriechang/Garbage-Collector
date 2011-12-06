@@ -86,8 +86,8 @@ gc.Game.prototype.step_ = function(dt){
 		}
 	}
 	 
-	//if (this.cpu.getStatus() >= 100){
-	if (this.cpu.getStatus() >= 5){
+	if (this.cpu.getStatus() >= 100){
+	//if (this.cpu.getStatus() >= 5){
 		this.endGame();
 	}
 }
