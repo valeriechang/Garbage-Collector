@@ -1,6 +1,5 @@
 goog.provide('gc.Player');
 
-goog.require('gc.Game');
 goog.require('lime.Sprite');
 goog.require('lime.animation.MoveTo');
 goog.require('lime.animation.RotateBy');

@@ -3,7 +3,6 @@ goog.provide('gc.SideBar');
 
 //request that lime.SideBar definitions are loaded
 goog.require('lime.Button');
-goog.require('gc.Game');
 goog.require('lime.GlossyButton');
 goog.require('lime.fill.Fill');
 goog.require('lime.Sprite');
