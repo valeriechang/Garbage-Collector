@@ -53,6 +53,10 @@ gc.Enemy.prototype.angleTowards = function(obj){
 }
 
 gc.Enemy.prototype.move = function(){
+	if(this.dead){
+		this.setFill("assets/zombie_hit.png");
+		return;
+	}
 	var pos = this.getPosition();
 	this.x = pos.x;
 	this.y = pos.y;
@@ -81,6 +85,9 @@ gc.Enemy.prototype.isDead = function(){
 }
 
 gc.Enemy.prototype.score = function(){
+	if(this.dead){
+		return 0;
+	}
 	return 5;
 }
 
