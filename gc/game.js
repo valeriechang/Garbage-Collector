@@ -1,12 +1,14 @@
 goog.provide('gc.Game');
 
+goog.require('lime.animation.Animation');
+goog.require('lime.Director');
 goog.require('lime.Scene');
 goog.require('gc.Board');
-goog.require('gc.SideBar');
 goog.require('gc.Cpu');
-goog.require('gc.Player');
 goog.require('gc.Enemy');
 goog.require('gc.EnemyFactory');
+goog.require('gc.Player');
+goog.require('gc.SideBar');
 
 gc.Game = function(){
 	lime.Scene.call(this);
@@ -84,9 +86,10 @@ gc.Game.prototype.step_ = function(dt){
 		}
 	}
 	 
-	// if(this.cpu.getStatus() <= 0){
-		// this.endGame();
-	// }
+	//if (this.cpu.getStatus() >= 100){
+	if (this.cpu.getStatus() >= 5){
+		this.endGame();
+	}
 }
 
 gc.Game.prototype.moveToPos = function(e) {
@@ -156,7 +159,12 @@ gc.Game.prototype.detectCollision = function(obj1, obj2){
 }
 
 gc.Game.prototype.endGame = function(){
-	gc.prevScene();
+	//goog.events.unlisten(this.board, ['mousedown', 'touchstart'], this.board.pressHandler_);
+	lime.scheduleManager.unschedule(this.scheduleSpawn, this);
+	lime.scheduleManager.unschedule(this.recoverCpu, this);
+	lime.scheduleManager.unschedule(this.step_, this);
+	gc.showGameOver();
+	lime.scheduleManager.callAfter(gc.showHighscores, this, 3000);
 }
 
 gc.Game.prototype.createEnemy = function(x,y,enemy){

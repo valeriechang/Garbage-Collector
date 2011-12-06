@@ -35,10 +35,10 @@ gc.Highscores = function(){
 		backLayer.appendChild(score);
 	}
 
-	var backBtn = gc.makeMenuBtn("Back");
+	var backBtn = gc.makeMenuBtn("Main Menu");
 	backBtn.setPosition(gc.WIDTH / 2, 70 + i * 30);
 	goog.events.listen(backBtn, 'click', function() {
-		gc.prevScene();
+		gc.loadMenu();
 	});
 	backLayer.appendChild(backBtn);
 

@@ -8,21 +8,22 @@ goog.addDependency("../../../gc/hsTracker.js", ['gc.hsTracker'], []);
 goog.addDependency("../../../gc/instructions.js", ['gc.Instructions'], ['lime.Scene', 'lime.RoundedRect', 'lime.Layer', 'lime.Label', 'lime.Sprite']);
 
 //get requirements
-goog.require('lime.Director');
-goog.require('lime.Scene');
-goog.require('lime.Layer');
-goog.require('lime.Circle');
-goog.require('lime.Label');
-goog.require('lime.GlossyButton');
-goog.require('lime.animation.Spawn');
 goog.require('lime.animation.FadeTo');
-goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
+goog.require('lime.animation.ScaleTo');
+goog.require('lime.animation.Spawn');
+goog.require('lime.audio.Audio');
+goog.require('lime.Circle');
+goog.require('lime.Director');
+goog.require('lime.GlossyButton');
+goog.require('lime.Label');
+goog.require('lime.Layer');
+goog.require('lime.Scene');
+goog.require('lime.Sprite');
 goog.require('gc.Button');
 goog.require('gc.Game');
+goog.require('gc.GameOver');
 goog.require('gc.Highscores');
-goog.require('lime.audio.Audio');
-goog.require('lime.Sprite');
 goog.require('gc.Instructions');
 
 gc.WIDTH = 500;
@@ -96,9 +97,14 @@ gc.prevScene = function(){
 	gc.director.popScene();
 }
 
+gc.showGameOver = function(){
+	var scene = new gc.GameOver();
+	gc.director.pushScene(scene);
+}
+
 gc.showHighscores = function(){
 	var scene = new gc.Highscores();
-	gc.director.pushScene(scene);
+	gc.director.replaceScene(scene);
 }
 
 gc.showInstructions = function(){
