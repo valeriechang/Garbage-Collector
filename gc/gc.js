@@ -52,7 +52,7 @@ gc.loadMenu = function(){
 	
 	// Creat button, set its position, and listen for a click event to play a sound
 	var startBtn = gc.makeMenuBtn("Start").setPosition(0,0);
-	goog.events.listen(startBtn, 'click', function() {
+	goog.events.listen(startBtn, ['touchstart', 'mousedown'], function() {
 		btnSound.stop();
 		btnSound.play();
 		
@@ -62,7 +62,7 @@ gc.loadMenu = function(){
 	
 	// Creat button, set its position, and listen for a click event to play a sound 
 	var instrBtn = gc.makeMenuBtn("Instructions").setPosition(0, 50);
-	goog.events.listen(instrBtn, 'click', function() {
+	goog.events.listen(instrBtn, ['touchstart', 'mousedown'], function() {
 		btnSound.stop();
 		btnSound.play();
 		gc.showInstructions();
@@ -71,7 +71,7 @@ gc.loadMenu = function(){
 
 	// Creat button, set its position, and listen for a click event to play a sound 
 	var highBtn = gc.makeMenuBtn("High Scores").setPosition(0, 100);
-	goog.events.listen(highBtn, 'click', function() {
+	goog.events.listen(highBtn, ['touchstart', 'mousedown'], function() {
 		btnSound.stop();
 		btnSound.play();
 		gc.showHighscores();

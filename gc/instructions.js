@@ -18,7 +18,7 @@ gc.Instructions = function() {
 	
 	var backBtn = gc.makeMenuBtn("Main Menu");
 	backBtn.setPosition(gc.WIDTH / 2, 275);
-	goog.events.listen(backBtn, 'click', function() {
+	goog.events.listen(backBtn, ['touchstart', 'mousedown'], function() {
 		gc.loadMenu();
 	});
 	backLayer.appendChild(backBtn);
