@@ -10,6 +10,8 @@ goog.require('gc.EnemyFactory');
 goog.require('gc.Player');
 goog.require('gc.SideBar');
 
+gc.ISSOUNDON = false;
+
 gc.Game = function(){
 	lime.Scene.call(this);
 	
@@ -130,15 +132,23 @@ gc.Game.prototype.moveToPos = function(e) {
 	if(target.x >= -this.getBoardWidth() + this.SIDEBAR_WIDTH*2){ // Make sure player doesn't move into sidebar
 		if(!this.player.getIsOverclockOn()){
 			if(duration > 1.5) {
-				this.player.playLongMoveSound();
+				if(gc.ISSOUNDON) {
+					this.player.playLongMoveSound();
+				}
 			} else {
-				this.player.playNormalMoveSound();
+				if(gc.ISSOUNDON) {
+					this.player.playNormalMoveSound();
+				}
 			}
 		} else {
 			if(duration > 1.5) {
-				this.player.playLongMoveSound();
+				if(gc.ISSOUNDON) {
+					this.player.playLongMoveSound();
+				}
 			} else {
-				this.player.playOverclockMoveSound();
+				if(gc.ISSOUNDON) {
+					this.player.playOverclockMoveSound();
+				}
 			}
 		}
   		this.player.runAction( 
