@@ -174,7 +174,8 @@ gc.Game.prototype.endGame = function(){
 	lime.scheduleManager.unschedule(this.recoverCpu, this);
 	lime.scheduleManager.unschedule(this.step_, this);
 	gc.showGameOver();
-	lime.scheduleManager.callAfter(gc.showHighscores, this, 3000);
+	
+	lime.scheduleManager.callAfter(this.enterHighScores, this, 1000)
 }
 
 gc.Game.prototype.createEnemy = function(x,y,enemy){
@@ -211,4 +212,11 @@ gc.Game.prototype.endOC = function(){
 gc.Game.prototype.addScore = function(s){
 	this.points += s;
 	this.score.setText(this.points);
+}
+
+gc.Game.prototype.enterHighScores = function() {
+	var name = prompt('Please enter in your name: ');
+	this.hs = new gc.hsTracker();
+	this.hs.add(name,this.points);
+	lime.scheduleManager.callAfter(gc.showHighscores, this, 3000);
 }

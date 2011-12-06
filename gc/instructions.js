@@ -36,7 +36,7 @@ gc.Instructions = function() {
 	backLayer.appendChild(objective2);
 	
 	var text2 = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 150).setAlign('center').setFontColor('#fff');
-	text2.setText("Click/Tap to move, you'll attack all enemies in your path");
+	text2.setText("Click/Tap to move, you'll attack all enemies in your path.");
 	backLayer.appendChild(text2);
 	
 	var clock = new lime.Label().setFontSize("18").setPosition(gc.WIDTH / 2, 200).setAlign('center').setFontColor('#fff');
