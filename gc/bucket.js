@@ -33,8 +33,14 @@ gc.Bucket.prototype.playOnZombieHitSound = function() {
 }
 
 gc.Bucket.prototype.setupAnimation = function(){
-	var movingPics = ['assets/zombieBucket0.png', 'assets/zombieBucket1.png'];
-   					  
+	if(this.hit == false)
+	{
+		var movingPics = ['assets/zombieBucket0.png', 'assets/zombieBucket1.png'];
+	}
+   	else
+   	{
+   		var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];
+	}			  
 	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
   for(var i = 0; i < movingPics.length; i++) {
     walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
