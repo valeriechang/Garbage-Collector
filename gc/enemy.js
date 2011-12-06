@@ -76,7 +76,9 @@ gc.Enemy.prototype.move = function(){
 }
 
 gc.Enemy.prototype.takeHit = function(){
-	this.playOnZombieHitSound();
+	if(gc.ISSOUNDON) {
+		this.playOnZombieHitSound();
+	}
 	this.dead = true;
 }
 
