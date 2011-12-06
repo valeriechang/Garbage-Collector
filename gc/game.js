@@ -66,7 +66,7 @@ gc.Game = function(){
         .setAnchorPoint(0, 0).setFontWeight(700);
     this.backLayer.appendChild(this.score);
 	
-	goog.events.listen(this, 'mousedown', this.moveToPos);
+	goog.events.listen(this, ['mousedown', 'touchstart'], this.moveToPos);
 }
 goog.inherits(gc.Game, lime.Scene);
 
