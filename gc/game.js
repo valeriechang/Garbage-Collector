@@ -74,7 +74,7 @@ gc.Game.prototype.start = function(){
 	lime.scheduleManager.schedule(this.step_, this);
 }
 
-gc.Game.prototype.step_ = function(){
+gc.Game.prototype.step_ = function(dt){
 	
 	this.sidebar.updateBar();
 	
@@ -85,17 +85,14 @@ gc.Game.prototype.step_ = function(){
 		var cpuSide = this.cpu.getPosition().x + this.cpu.getSize().width/2;
 		
 		if(Math.abs(pos.x) < cpuSide && Math.abs(pos.y) < cpuTop){
-		// if(this.detectCollision(this.cpu, this.enemies[i])){
+			this.cpu.takeHit(3); //TODO REPLACE THIS WITH CALL TO enemy.hit() 
 			this.backLayer.removeChild(this.enemies[i]);
 		 	this.enemies.splice(i, 1);	
-		 	this.cpu.takeHit(5);
 		 	continue;
 		}
-		
 		// Detect player hitting an enemy
 		if(this.detectCollision(this.player, this.enemies[i])){
 			this.enemies[i].takeHit();
-			
 		}
 		// Clean up dead zombies
 		if(this.enemies[i].isDead()){
