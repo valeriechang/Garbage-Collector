@@ -44,7 +44,8 @@ gc.SideBar = function (width, height, game, cpu) {
 	
 	//initial mask values
 	this.mask = new lime.Sprite().setSize(this.healthBarWidth, 0).
-		setPosition(0, (this.healthBarHeight / 2));
+		//setPosition(0, (this.healthBarHeight / 2));
+		setPosition(0, (this.healthBarHeight / 2)).setAnchorPoint(0.5, 0.5);
 	this.appendChild(this.mask);
 	this.healthBar.setMask(this.mask);
 	
