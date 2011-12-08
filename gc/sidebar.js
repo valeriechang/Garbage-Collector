@@ -35,18 +35,18 @@ gc.SideBar = function (width, height, game, cpu) {
 	var btnPosY = (this.healthBarHeight + btnHeight + this.height * 0.05) / 2;
 	
 	//initial healthBar values
-	var gradient = new lime.fill.LinearGradient().setDirection(0, 0, 0, 1).
-		addColorStop(0, 255, 0, 0, 1).addColorStop(0.5, 255, 255, 0, 1).
-		addColorStop(1, 0, 255, 0, 1);
-	this.healthBar = new lime.RoundedRect().
-		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient).setPosition(0, 0);
-	this.appendChild(this.healthBar);
+	//var gradient = new lime.fill.LinearGradient().setDirection(0, 0, 0, 1).
+		//addColorStop(0, 255, 0, 0, 1).addColorStop(0.5, 255, 255, 0, 1).
+		//addColorStop(1, 0, 255, 0, 1);
+	//this.healthBar = new lime.RoundedRect().
+		//setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient).setPosition(0, 0);
+	//this.appendChild(this.healthBar);
 	
 	//initial mask values
 	this.mask = new lime.Sprite().setSize(this.healthBarWidth, 0).setFill('#fff').
 		setPosition(0, (this.healthBarHeight/2)).setAnchorPoint(0.5, 1);
 	this.appendChild(this.mask);
-	this.healthBar.setMask(this.mask);
+	//this.healthBar.setMask(this.mask);
 	
 	//initial soundButton values
 	this.bgMusic = new lime.audio.Audio('assets/Sounds/Song6Long.mp3');
