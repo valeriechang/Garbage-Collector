@@ -6,7 +6,6 @@ gc.Cpu = function(){
 	lime.RoundedRect.call(this);
 	
 	this.onHitSound = new lime.audio.Audio('assets/Sounds/rocketexpl.mp3');
-	this.onDestructionSound = new lime.audio.Audio('assets/Sounds/kaboom.mp3');
 
 	this.REC_AMT = 1;
 	this.OC_DMG = 2;
@@ -20,6 +19,10 @@ goog.inherits(gc.Cpu, lime.RoundedRect);
 gc.Cpu.prototype.playOnHitSound = function() {
 	this.onHitSound.stop();
 	this.onHitSound.play();
+}
+
+gc.Cpu.prototype.stopOnHitSound = function() {
+	this.onHitSound.stop();
 }
 
 gc.Cpu.prototype.getStatus = function(){

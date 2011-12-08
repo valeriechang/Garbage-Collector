@@ -78,19 +78,19 @@ gc.SideBar = function (width, height, game, cpu) {
 goog.inherits(gc.SideBar, lime.Sprite);
 
 gc.SideBar.prototype.setSoundOnOff = function() {
-	if (!this.isBgSoundOn) {
+	if (!gc.ISSOUNDON) {
 		this.soundBtnBg.setFill('assets/sound_1.png');
-		this.bgMusic.stop();
-		this.bgMusic.play();
-		this.isBgSoundOn = true;
 		gc.ISSOUNDON = true;
 		if(this.overclockIsOn) {
 			this.startOCSoundIfPossible();
-		}	
+		} else {
+			//this.stopBGMusic();
+			this.stopOCSoundIfPossible();
+			this.playBGMusic();
+		}
 	} else {
 		this.soundBtnBg.setFill('assets/sound_0.png');
-		this.bgMusic.stop();
-		this.isBgSoundOn = false;
+		this.stopBGMusic();
 		gc.ISSOUNDON = false;
 		if(this.overclockIsOn) {
 			this.stopOCSoundIfPossible();
@@ -107,17 +107,47 @@ gc.SideBar.prototype.updateBar = function() {
 	}
 	if(heightGrowth >= 300) {
 		if(gc.ISSOUNDON) {
-			this.alarmSound.play();
+			this.playAlarm();
 		} else {
-			this.alarmSound.stop();
+			this.stopAlarm();
 		}
-	} else if(heightGrowth >= 420){
-		this.kaboom.play();
 	} 
 	else {
-		this.alarmSound.stop();
+		this.stopAlarm();
 	}
 };
+
+gc.SideBar.prototype.playBGMusic = function() {
+	this.bgMusic.stop();
+	this.bgMusic.play();
+	this.isBgSoundOn = true;	
+}
+
+gc.SideBar.prototype.stopBGMusic = function() {
+	this.bgMusic.stop();
+	this.isBgSoundOn = false;
+}
+
+gc.SideBar.prototype.playAlarm = function() {
+	this.alarmSound.play();
+}
+
+gc.SideBar.prototype.stopAlarm = function() {
+	this.alarmSound.stop();
+}
+
+gc.SideBar.prototype.stopAlarm = function() {
+	this.alarmSound.stop();
+}
+
+gc.SideBar.prototype.playKaboom = function() {
+	this.kaboom.stop();
+	this.kaboom.play();
+}
+
+gc.SideBar.prototype.stopKaboom = function() {
+	this.kaboom.stop();
+}
 
 gc.SideBar.prototype.playOverclockMusic = function() {
 	this.overclockMusic.stop();
@@ -131,16 +161,22 @@ gc.SideBar.prototype.stopOverclockMusic = function() {
 gc.SideBar.prototype.OC = function() {
 	if (!this.cpuOverState) {
 		if(gc.ISSOUNDON) {
-			this.overclockMusic.play();
+			this.playOverclockMusic();
+			this.stopBGMusic();
 		}
 		this.overclockIsOn = true;
 		this.cpuOverState = true;
 		this.cpuOverBtn.setColor('#D71413').setText('!!!');
+		this.game.startOC();
 	} else {
 		this.stopOverclockMusic();
+		if(gc.ISSOUNDON) {
+			this.playBGMusic();
+		}
 		this.overclockIsOn = false;
 		this.cpuOverState = false;
 		this.cpuOverBtn.setColor('#4359C4').setText('OC');
+		this.game.endOC();
 	}
 }
 
@@ -156,6 +192,15 @@ gc.SideBar.prototype.startOCSoundIfPossible = function() {
 	if(!this.overclockMusic.isPlaying()) {
 		if(gc.ISSOUNDON) {
 			this.playOverclockMusic();
+			this.stopBGMusic();
 		}
 	}
+}
+
+gc.SideBar.prototype.startOC = function() {
+
+}
+
+gc.SideBar.prototype.endOC = function(){
+	
 }
