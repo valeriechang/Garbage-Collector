@@ -39,7 +39,7 @@ gc.SideBar = function (width, height, game, cpu) {
 		addColorStop(0, 255, 0, 0, 1).addColorStop(0.5, 255, 255, 0, 1).
 		addColorStop(1, 0, 255, 0, 1);
 	this.healthBar = new lime.RoundedRect().
-		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient);
+		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient).setPosition(0, 0).setAnchorPoint(0.5, 0.5);
 	this.appendChild(this.healthBar);
 	
 	//initial mask values
