@@ -43,10 +43,10 @@ gc.SideBar = function (width, height, game, cpu) {
 	this.appendChild(this.healthBar);
 	
 	//initial mask values
-	//this.mask = new lime.Sprite().setSize(this.healthBarWidth, 0).
-		//setPosition(0, (this.healthBarHeight / 2));
-	//this.appendChild(this.mask);
-	//this.healthBar.setMask(this.mask);
+	this.mask = new lime.Sprite().setSize(this.healthBarWidth, 0).setFill('#fff').
+		setPosition(0, (this.healthBarHeight/2)).setAnchorPoint(0.5, 1);
+	this.appendChild(this.mask);
+	this.healthBar.setMask(this.mask);
 	
 	//initial soundButton values
 	this.bgMusic = new lime.audio.Audio('assets/Sounds/Song6Long.mp3');
@@ -102,7 +102,7 @@ gc.SideBar.prototype.updateBar = function() {
 	// var heightGrowth = (100 - this.cpu.getStatus()) * 10;
 	var heightGrowth = this.healthBarHeight*this.cpu.getStatus()*.01*2.05;
 	if (heightGrowth <= this.healthBarHeight*2.05) {
-		//this.mask.setSize(this.healthBarWidth, heightGrowth);
+		this.mask.setSize(this.healthBarWidth, heightGrowth);
 	}
 	if(heightGrowth >= 300) {
 		if(gc.ISSOUNDON) {
