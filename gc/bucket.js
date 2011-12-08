@@ -1,6 +1,5 @@
 goog.provide('gc.Bucket');
 
-goog.require('gc.Game');
 goog.require('lime.Sprite');
 goog.require("goog.math.Coordinate");
 goog.require('gc.Enemy');
