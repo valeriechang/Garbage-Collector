@@ -1,11 +1,11 @@
 goog.provide('gc.Bucket');
 
-goog.require('gc.Game');
 goog.require('lime.Sprite');
 goog.require("goog.math.Coordinate");
 goog.require('gc.Enemy');
 
 gc.Bucket = function(cpu) {
+	this.setupAnimation();
 	gc.Enemy.call(this);
 	
 	this.onZombieHitSound = new lime.audio.Audio('assets/Sounds/splat.mp3');
@@ -19,7 +19,6 @@ gc.Bucket = function(cpu) {
 	this.hittable = true;
 	
 	//this.setFill('assets/zombieBucket0.png'); // enemy is red... currently
-	this.setupAnimation();
 }
 goog.inherits(gc.Bucket, gc.Enemy);
 
@@ -65,6 +64,7 @@ gc.Bucket.prototype.takeHit = function(){
 		}
 		this.hit = true;
 		this.hittable = false;
+		this.setupAnimation();
 	}
 	else if(this.hittable){
 		if(gc.ISSOUNDON) {

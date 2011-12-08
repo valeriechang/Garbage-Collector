@@ -3,7 +3,6 @@ goog.provide('gc.SideBar');
 
 //request that lime.SideBar definitions are loaded
 goog.require('lime.Button');
-goog.require('gc.Game');
 goog.require('lime.GlossyButton');
 goog.require('lime.fill.Fill');
 goog.require('lime.Sprite');
@@ -40,12 +39,12 @@ gc.SideBar = function (width, height, game, cpu) {
 		addColorStop(0, 255, 0, 0, 1).addColorStop(0.5, 255, 255, 0, 1).
 		addColorStop(1, 0, 255, 0, 1);
 	this.healthBar = new lime.RoundedRect().
-		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient);
+		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient).setPosition(0, 0);
 	this.appendChild(this.healthBar);
 	
 	//initial mask values
-	this.mask = new lime.Sprite().setSize(this.healthBarWidth, 0).
-		setPosition(0, (this.healthBarHeight / 2));
+	this.mask = new lime.Sprite().setSize(this.healthBarWidth, 0).setFill('#fff').
+		setPosition(0, (this.healthBarHeight/2)).setAnchorPoint(0.5, 1);
 	this.appendChild(this.mask);
 	this.healthBar.setMask(this.mask);
 	
