@@ -14,7 +14,7 @@ gc.Enemy = function(cpu){
 	this.angle = 0; // angle in degrees
 	this.setFill("assets/zombie0.png");
 	this.dead = false;
-	this.setupAnimation();
+	this.setupAnimation(['assets/zombie0.png', 'assets/zombie1.png']);
 }
 goog.inherits(gc.Enemy, lime.Sprite);
 
@@ -27,9 +27,7 @@ gc.Enemy.prototype.stopOnZombieHitSound = function() {
 	this.onZombieHitSound.stop();	
 }
 
-gc.Enemy.prototype.setupAnimation = function(){
-	var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];
-   					  
+gc.Enemy.prototype.setupAnimation = function(movingPics){
 	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
   for(var i = 0; i < movingPics.length; i++) {
     walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
@@ -58,7 +56,7 @@ gc.Enemy.prototype.angleTowards = function(obj){
 
 gc.Enemy.prototype.move = function(){
 	if(this.dead){
-		this.setFill("assets/zombie_hit.png");
+		this.setupAnimation(["assetc/zombie_hit.png"]);
 		return;
 	}
 	var pos = this.getPosition();
