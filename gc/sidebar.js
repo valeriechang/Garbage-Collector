@@ -100,8 +100,8 @@ gc.SideBar.prototype.setSoundOnOff = function() {
 // new method for bar visibility
 gc.SideBar.prototype.updateBar = function() {
 	// var heightGrowth = (100 - this.cpu.getStatus()) * 10;
-	var heightGrowth = this.healthBarHeight*this.cpu.getStatus()*.01*2.05;
-	if (heightGrowth <= this.healthBarHeight*2.05) {
+	var heightGrowth = this.healthBarHeight*this.cpu.getStatus()*.01*1.02;
+	if (heightGrowth <= this.healthBarHeight*1.02) {
 		this.mask.setSize(this.healthBarWidth, heightGrowth);
 	}
 	if(heightGrowth >= 300) {
