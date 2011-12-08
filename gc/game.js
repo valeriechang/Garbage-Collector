@@ -17,7 +17,7 @@ gc.Game = function(){
 	
 	this.SIDEBAR_WIDTH = gc.WIDTH/5.0;
 	this.SPAWN_RATE = 1000; 
-	this.RECOVERY_RATE = 1000;
+	this.RECOVERY_RATE = 3000;
 	
 	this.points = 0; // Player's accumulated score over the course of the game 
 	

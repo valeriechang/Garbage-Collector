@@ -8,7 +8,7 @@ gc.Cpu = function(){
 	this.onHitSound = new lime.audio.Audio('assets/Sounds/rocketexpl.mp3');
 
 	this.REC_AMT = 1;
-	this.OC_DMG = 2;
+	this.OC_DMG = 5;
 	
 	this.setFill('assets/cpu.png');
 	this.status = 0;
