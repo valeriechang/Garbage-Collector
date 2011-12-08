@@ -84,7 +84,6 @@ gc.SideBar.prototype.setSoundOnOff = function() {
 		if(this.overclockIsOn) {
 			this.startOCSoundIfPossible();
 		} else {
-			//this.stopBGMusic();
 			this.stopOCSoundIfPossible();
 			this.playBGMusic();
 		}
@@ -195,12 +194,4 @@ gc.SideBar.prototype.startOCSoundIfPossible = function() {
 			this.stopBGMusic();
 		}
 	}
-}
-
-gc.SideBar.prototype.startOC = function() {
-
-}
-
-gc.SideBar.prototype.endOC = function(){
-	
 }
