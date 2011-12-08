@@ -5,7 +5,7 @@ goog.require("goog.math.Coordinate");
 goog.require('gc.Enemy');
 
 gc.Bucket = function(cpu) {
-	this.setupAnimation();
+	this.setupBucketAnimation();
 	gc.Enemy.call(this);
 	
 	this.onZombieHitSound = new lime.audio.Audio('assets/Sounds/splat.mp3');
@@ -16,9 +16,7 @@ gc.Bucket = function(cpu) {
 	this.angle = 0; // angle in degrees
 	this.dead = false;
 	this.hit = false;
-	this.hittable = true;
-	
-	//this.setFill('assets/zombieBucket0.png'); // enemy is red... currently
+	this.hittable = false;
 }
 goog.inherits(gc.Bucket, gc.Enemy);
 
@@ -40,33 +38,33 @@ gc.Bucket.prototype.stopOnZombieHitSound = function() {
 	this.onZombieHitSound.stop();
 }
 
-gc.Bucket.prototype.setupAnimation = function(){
-	if(this.hit == false)
-	{
-		var movingPics = ['assets/zombieBucket0.png', 'assets/zombieBucket1.png'];
-	}
-   	else
-   	{
-   		var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];
-	}			  
+gc.Bucket.prototype.setupZombieAnimation = function(){
+	var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];			  
 	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
-  for(var i = 0; i < movingPics.length; i++) {
-    walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
-  }
+  	for(var i = 0; i < movingPics.length; i++) {
+    	walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
+  	}
+ 	this.runAction(walkingAnim);
+}
+
+gc.Bucket.prototype.setupBucketAnimation = function(){
+	this.hittable = true;
+	var movingPics = ['assets/zombieBucket0.png', 'assets/zombieBucket1.png'];
+	var walkingAnim = new lime.animation.KeyframeAnimation().setDelay(1/8);
+  	for(var i = 0; i < movingPics.length; i++) {
+    	walkingAnim.addFrame(new lime.fill.Image(movingPics[i]).setSize(20, 20));
+  	}
  	this.runAction(walkingAnim);
 }
 
 gc.Bucket.prototype.takeHit = function(){
 	this.setFill("assets/zombie0.png");
-	if(this.hit == false){
-		if(gc.ISSOUNDON) {
-			this.playBucketHeadHitSound();
-		}
-		this.hit = true;
-		this.hittable = false;
-		this.setupAnimation();
+	if(gc.ISSOUNDON) {
+		this.playBucketHeadHitSound();
 	}
-	else if(this.hittable){
+	this.hit = true;
+	this.setupZombieAnimation();
+	if(this.hittable){
 		if(gc.ISSOUNDON) {
 			this.playOnZombieHitSound();
 		}
