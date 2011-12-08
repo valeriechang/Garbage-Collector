@@ -26,7 +26,7 @@ goog.require('gc.GameOver');
 goog.require('gc.Highscores');
 goog.require('gc.Instructions');
 
-gc.WIDTH = 500;
+gc.WIDTH = 550;
 gc.HEIGHT = 320;
 
 // entrypoint
@@ -49,6 +49,10 @@ gc.loadMenu = function(){
 	var background = new lime.Sprite().setFill('assets/grimreaper.png').setPosition(0, 100);
 	background.qualityRenderer = true;
 	layer.appendChild(background);
+	
+	var title = new lime.Label().setFontFamily('Old English Text MT').setFontColor('#c00').setFontSize(55).
+        setPosition(-200, -160).setText('Garbage Collector').setAnchorPoint(0, 0).setFontWeight(700);
+	layer.appendChild(title);
 	
 	// Creat button, set its position, and listen for a click event to play a sound
 	var startBtn = gc.makeMenuBtn("Start").setPosition(0,0);

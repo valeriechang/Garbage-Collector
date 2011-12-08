@@ -11,8 +11,8 @@ gc.EnemyFactory = function(game, cpu){
 	this.forkDensity = .5;
 	this.philosopherDensity = .1;
 	
-	this.zombieProb = 5;
-	this.bucketZombieProb = 1;
+	this.zombieProb = 15;
+	this.bucketZombieProb = 5;
 	this.boardWidth = game.getBoardWidth();
 	this.boardHeight = game.getBoardHeight();
 }
