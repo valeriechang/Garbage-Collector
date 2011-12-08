@@ -28,9 +28,17 @@ gc.Bucket.prototype.playBucketHeadHitSound = function() {
 	this.bucketHeadHit.play();
 }
 
+gc.Bucket.prototype.stopBucketHeadHitSound = function() {
+	this.bucketHeadHit.stop();	
+}
+
 gc.Bucket.prototype.playOnZombieHitSound = function() {
 	this.onZombieHitSound.stop();
 	this.onZombieHitSound.play();
+}
+
+gc.Bucket.prototype.stopOnZombieHitSound = function() {
+	this.onZombieHitSound.stop();
 }
 
 gc.Bucket.prototype.setupAnimation = function(){

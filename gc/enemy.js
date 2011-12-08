@@ -23,6 +23,10 @@ gc.Enemy.prototype.playOnZombieHitSound = function() {
 	this.onZombieHitSound.play();	
 }
 
+gc.Enemy.prototype.stopOnZombieHitSound = function() {
+	this.onZombieHitSound.stop();	
+}
+
 gc.Enemy.prototype.setupAnimation = function(){
 	var movingPics = ['assets/zombie0.png', 'assets/zombie1.png'];
    					  

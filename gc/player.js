@@ -42,13 +42,26 @@ gc.Player = function(game){
 }	
 goog.inherits(gc.Player, lime.Sprite);
 
+gc.Player.prototype.stopLongMoveSound = function() {
+	this.moveLongSound.stop();	
+}
+
 gc.Player.prototype.playLongMoveSound = function() {
 	this.moveLongSound.stop();
 	this.moveLongSound.play();
 }
+
+gc.Player.prototype.stopNormalMoveSound = function() {
+	this.moveSound.stop();	
+}
+
 gc.Player.prototype.playNormalMoveSound = function() {
 	this.moveSound.stop();
 	this.moveSound.play();	
+}
+
+gc.Player.prototype.stopOverclockMoveSound = function() {
+	this.overclockMoveSound.stop();	
 }
 
 gc.Player.prototype.playOverclockMoveSound = function() {

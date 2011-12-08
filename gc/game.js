@@ -108,6 +108,7 @@ gc.Game.prototype.step_ = function(dt){
 	 
 	//if (this.cpu.getStatus() >= 5){
 	if(this.cpu.getStatus() >= 100){
+		this.sidebar.playKaboom();
 		this.endGame();
 	}
 }
@@ -179,6 +180,15 @@ gc.Game.prototype.detectCollision = function(obj1, obj2){
 }
 
 gc.Game.prototype.endGame = function(){
+	this.sidebar.stopAlarm();
+	this.sidebar.stopBGMusic();
+	this.sidebar.stopOverclockMusic();
+	this.player.stopOverclockMoveSound();
+	this.player.stopNormalMoveSound();
+	this.player.stopLongMoveSound();
+	
+	gc.ISSOUNDON = false;
+	
 	//goog.events.unlisten(this.board, ['mousedown', 'touchstart'], this.board.pressHandler_);
 	lime.scheduleManager.unschedule(this.scheduleSpawn, this);
 	lime.scheduleManager.unschedule(this.recoverCpu, this);
