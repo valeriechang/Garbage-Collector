@@ -39,7 +39,8 @@ gc.SideBar = function (width, height, game, cpu) {
 		addColorStop(0, 255, 0, 0, 1).addColorStop(0.5, 255, 255, 0, 1).
 		addColorStop(1, 0, 255, 0, 1);
 	this.healthBar = new lime.RoundedRect().
-		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient).setPosition(0, 0);
+		setSize(this.healthBarWidth, this.healthBarHeight).setFill(gradient).
+		setPosition(-(this.healthBarWidth/2), (this.healthBarHeight/2)).setAnchorPoint(0, 1);
 	this.appendChild(this.healthBar);
 	
 	//initial mask values
@@ -99,12 +100,14 @@ gc.SideBar.prototype.setSoundOnOff = function() {
 
 // new method for bar visibility
 gc.SideBar.prototype.updateBar = function() {
-	// var heightGrowth = (100 - this.cpu.getStatus()) * 10;
-	var heightGrowth = this.healthBarHeight*this.cpu.getStatus()*.01*1.02;
-	if (heightGrowth <= this.healthBarHeight*1.02) {
+	var cpuState = this.cpu.getStatus();
+	var heightGrowth = this.healthBarHeight*cpuState*.01;
+	if (cpuState >= 98) {
+		this.mask.setSize(this.healthBarWidth, this.healthBarHeight);
+	} else {
 		this.mask.setSize(this.healthBarWidth, heightGrowth);
 	}
-	if(heightGrowth >= 300) {
+	if (heightGrowth >= 300) {
 		if(gc.ISSOUNDON) {
 			this.playAlarm();
 		} else {
