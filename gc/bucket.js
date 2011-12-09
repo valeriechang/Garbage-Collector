@@ -59,12 +59,12 @@ gc.Bucket.prototype.setupBucketAnimation = function(){
 
 gc.Bucket.prototype.takeHit = function(){
 	this.setFill("assets/zombie0.png");
-	if(gc.ISSOUNDON) {
+	if(gc.ISSOUNDON && this.hit == false) {
 		this.playBucketHeadHitSound();
 	}
 	this.hit = true;
 	this.setupZombieAnimation();
-	if(this.hittable){
+	if(this.hittable) {
 		if(gc.ISSOUNDON) {
 			this.playOnZombieHitSound();
 		}
