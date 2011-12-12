@@ -10,7 +10,7 @@ gc.Enemy = function(cpu){
 	lime.Sprite.call(this);
 	this.onZombieHitSound = new lime.audio.Audio('assets/Sounds/splat.mp3');
 	this.cpu = cpu;
-	this.v = 1;
+	this.v = 2;
 	this.angle = 0; // angle in degrees
 	this.setFill("assets/zombie0.png");
 	this.dead = false;
