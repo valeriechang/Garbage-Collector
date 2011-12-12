@@ -58,13 +58,13 @@ gc.Game = function(){
 	 // label for score message
 	var x_lbl = -this.board.getSize().width/2;
 	var y_lbl = -this.board.getSize().height/2;
-	var offset = 35;
-    var score_lbl = new lime.Label().setFontFamily('Trebuchet MS').setFontColor('#4f96ed').setFontSize(10).
+	var offset = 60;
+    var score_lbl = new lime.Label().setFontFamily('Old English Text MT').setFontColor('#4f96ed').setFontSize(20).
         setPosition(x_lbl, y_lbl).setText('Score:').setAnchorPoint(0, 0).setFontWeight(700);
     this.backLayer.appendChild(score_lbl);
 
     // score message label
-    this.score = new lime.Label().setFontColor('#fff').setFontSize(10).setText(0).setPosition(x_lbl + offset, y_lbl)
+    this.score = new lime.Label().setFontFamily('Old English Text MT').setFontColor('#fff').setFontSize(20).setText(0).setPosition(x_lbl + offset, y_lbl)
         .setAnchorPoint(0, 0).setFontWeight(700);
     this.backLayer.appendChild(this.score);
 	
